@@ -1,5 +1,5 @@
 name: Deploy Zola on GitHub Pages
-https://github.com/thedataquarry/zola-blog/tree/main
+
 on: 
  push:
   branches:
@@ -15,4 +15,4 @@ jobs:
     - name: Build and deploy
       uses: shalzz/zola-deploy-action@v0.17.2
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        TOKEN: ${{ secrets.TOKEN }}
