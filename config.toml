@@ -1,5 +1,5 @@
 # Adapted from serene v2.1.2
-base_url = "thedataquarry.github.io"
+base_url = "https://thedataquarry.github.io"
 title = "The Data Quarry"
 description = "A.I. and data engineering from a Python and Rust perspective"
 default_language = "en"
