@@ -9,21 +9,19 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.ref != 'refs/heads/main'
     steps:
-      - name: Checkout main
+      - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Build only 
+      - name: Build 
         uses: shalzz/zola-deploy-action@v0.17.2
         env:
           BUILD_DIR: .
           BUILD_ONLY: true
-          # A GitHub token is not necessary when BUILD_ONLY is true
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  deploy:
-    name: Deploy
-    uses: peaceiris/actions-gh-pages@v3
-    with:
-      github_token: ${{ secrets.GITHUB_TOKEN }}
-      publish_dir: ./public
+          # GitHub token is not necessary when BUILD_ONLY is true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          force_orphan: true
