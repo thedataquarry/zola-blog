@@ -95,7 +95,7 @@ Lorem ipsum dolor sit, amet[^1] words consectetur[^2] adipisicing elit.
 
 with caption:
 
-{{ figure(src="./dataquarry.png", alt="Data quarry banner") }}
+{{ figure(src="/img/dataquarry-banner.png", alt="Data quarry banner") }}
 
 
 ## Code
