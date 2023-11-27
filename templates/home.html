@@ -1,0 +1,118 @@
+{% extends "_base.html" %}
+
+{% block page %}homepage{% endblock page%}
+{% block lang %}{% if section.extra.lang %}{{ section.extra.lang }}{% else %}{{ section.lang }}{% endif %}{% endblock lang %}
+{% block title %}{{ config.title }}{% endblock title %}
+{% block desc %}
+  <meta name="description" content="{{ config.description }}">
+{% endblock desc %}
+
+{% block head %}
+{% if config.markdown.highlight_theme == "css" %}
+<link id="hl" rel="stylesheet" type="text/css" href="/hl-light.css" />
+{% endif %}
+{% if section.extra.math %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" integrity="sha384-3UiQGuEI4TTMaFmGIZumfRPtfKQ3trwQE2JgosJxCnGmQpL/lJdjpcHkaaFwHlcI" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js" integrity="sha384-G0zcxDFp5LWZtDuRMnBkk3EphCK1lhEf4UEyEM693ka574TZGwo4IWwS6QLzM/2t" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: '$$', right: '$$', display: true },
+        { left: '$', right: '$', display: false },
+        { left: '\\(', right: '\\)', display: false },
+        { left: '\\[', right: '\\]', display: true }
+      ],
+      throwOnError: false
+    });
+  });
+</script>
+{% endif %}
+{% endblock head %}
+
+{% block content %}
+<div id="wrapper">
+  <main>
+    <section id="info">
+      <img src="{{ config.extra.avatar }}" alt="avatar">
+      <div id="text">
+        <div>
+          <span id="blog_name" style="font-size:150%;font-weight:bold">{{ config.extra.blog_name }}</span>
+          {% if config.extra.display_author -%}
+          <span id="author"> | {{ config.extra.author }}</span>
+          {% endif -%}
+        </div>
+        <div id="bio"> {{ config.extra.bio }} </div>
+      </div>
+    </section>
+    <section id="links">
+      <div id="left">
+        {% for section in config.extra.sections %}
+        <a href="{{ section.path }}" {% if section.is_external %}target="_blank" rel='noreferrer noopener'{% endif %}>{{ section.name }}</a>
+        {% endfor %}
+      </div>
+      <div id="right">
+        {% for link in config.extra.links -%}
+        <a href="{{ link.url }}" aria-label="{{ link.name }}" target="_blank" rel='noreferrer noopener'>
+          {% set icon_path = "static/icon/" ~ link.icon ~ ".svg" %}
+          {% set icon = load_data(path=icon_path) %}
+          {{ icon | safe }}
+        </a>
+        {% endfor %}
+        {% set moon_icon = load_data(path="static/icon/moon.svg") %}
+        {% set sun_icon = load_data(path="static/icon/sun.svg") %}
+        <button id="theme-toggle" aria-label="theme switch" data-moon-icon="{{ moon_icon }}" data-sun-icon="{{ sun_icon }}">
+          {{ moon_icon | safe }}
+        </button>
+      </div>
+    </section>
+    {% if config.extra.homepage_layout == 'about' %}
+      <section id="brief" class="prose">
+        {{ section.content | trim | safe }}
+      </section>
+    {% elif config.extra.homepage_layout == 'list' %}
+      {% set blog_section_path = config.extra.blog_section_path | trim_start_matches(pat="/") %}
+      {% set section_md_path = blog_section_path ~ "/_index.md" %}
+      {% set blog_section = get_section(path=section_md_path) %}
+      <section class="layout-list">
+        {% if config.extra.blog_categorized %}
+        {% for category,posts in blog_section.pages | group_by(attribute="taxonomies.categories.0") -%}
+        <div class="category">{{ category }}</div>
+        <div>
+          {% for post in posts %}
+          <a class="post" href="{{ post.permalink }}">
+            <span>{{ post.title }}</span>
+            <span class="date">{{ post.date | date}}</span>
+          </a>
+          {% endfor %}
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="post-list">
+          {% for post in blog_section.pages %}
+          <a class="post" href="{{ post.permalink }}">
+            <span>{{ post.title }}</span>
+            <span class="line"></span>
+            <span class="date">{{ post.date | date}}</span>
+          </a>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </section>
+    {% endif %}
+    
+  </main>
+</div>
+{% endblock content %}
+
+{% block script %}
+<script src="/js/lightense.min.js"></script>
+{% if section.extra.mermaid %}
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
+{% endif %}
+{% include "_footer.html" %}
+{% endblock script %}

@@ -1,0 +1,87 @@
+# Adapted from serene v2.1.2
+base_url = "https://prrao87.github.io"
+title = "The Data Quarry"
+description = "A.I. and data engineering from a Python and Rust perspective"
+default_language = "en"
+output_dir = "public"
+compile_sass = true
+minify_html = true
+build_search_index = false  # Keep this false, search is temporarily unsupported
+generate_feed = true 
+feed_filename = "atom.xml"
+taxonomies = [
+    { name = "tags" },
+    { name = "categories" },
+]
+
+[markdown]  
+highlight_code = true
+highlight_theme = "css"
+extra_syntaxes_and_themes = ["highlight_themes"]
+highlight_themes_css = [
+    { theme = "serene-light", filename = "hl-light.css"},
+    { theme = "serene-dark", filename = "hl-dark.css"},
+]
+render_emoji = false
+external_links_target_blank = false
+external_links_no_follow = true
+external_links_no_referrer = true
+smart_punctuation = false
+
+[slugify]
+paths = "on"
+taxonomies = "on"
+anchors = "on"
+
+#=========================================================================================
+
+[extra]
+
+blog_name = "The Data Quarry"
+author = "Prashanth Rao"
+bio = "A.I. and Data Engineering from a Python and Rust perspective."
+avatar = "img/dataquarry-banner.png"
+# Set banners
+links = [
+    { name = "GitHub", icon = "github", url = "https://github.com/prrao87" },
+    { name = "Twitter", icon = "twitter", url = "https://twitter.com/tech_optimist" },
+    { name = "LinkedIn", icon = "linkedin", url = "https://www.linkedin.com/in/prrao87" },
+    { name = "Buy me a coffee", icon = "buymeacoffee", url = "https://www.buymeacoffee.com/prrao87" }
+]
+
+homepage_layout = "list"             # "about" | "list"
+
+sections = [
+    { name = "about", path = "/about", is_external = false },
+    { name = "blog", path = "/posts", is_external = false },
+    { name = "projects", path = "/projects", is_external = false },
+]
+blog_section_path = "/posts"
+
+nav_separator = "::"
+nav_wrapper_left = "{"
+nav_wrapper_right = "} ;"
+nav_wrapper_separator = ","
+
+display_author = false                     # Whether to display author name on homepage
+blog_categorized = false               # Whether to categorize blog posts
+blur_effect = true                    # Whether to turn on blur effect on navigation bar
+back_to_top = true                    # Whether to show back-to-top button on post pages
+
+toc = false                            # Whether to show Table-Of-Contents by default
+copy = true                           # Whether to add a copy button on code blocks by default
+comment = false                       # Whether to show giscus comment section by default, see https://giscus.app for more info
+display_tags = true                   # Whether to display tags on post pages by default
+truncate_summary = true              # Whether to truncate the summary of a post by default
+
+outdate_alert = false                 # Whether to show outdate alert by default
+outdate_alert_days = 120              # How many days will a post be outdated by default
+outdate_alert_text_before = "This article was last updated "
+outdate_alert_text_after = " days ago and may be out of date."
+
+footer_copyright = "© 2023 Prashanth Rao"
+footer_credits = true                 # Whether to show "powered by zola and serene" in footer
+
+not_found_title = "404"
+not_found_error_text = "Not Found"
+not_found_recover_text = "« back to home »"
