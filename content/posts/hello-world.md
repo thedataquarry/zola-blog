@@ -5,8 +5,7 @@ date = 2023-04-29
 updated = 2023-11-27
 
 [taxonomies]
-tags = ["rust", "data-engineering"]
-categories = ["General"]
+tags = ["rust", "general"]
 
 [extra]
 lang = "en"
@@ -15,7 +14,7 @@ toc = true
 
 ## Welcome to my blog!
 
-Hi there! 👋🏽 I'm an A.I. engineer with a passion for building intelligent, automated applications using a range of databases and software frameworks. You can always catch me nerding out on some cool new tool, programming language or framework (heaven knows, we have enough to keep track of in the tech world these days 🚀), so feel free to reach out on my socials if you're in Toronto 🇨🇦 and wanna chat 😄.
+Hi there! 👋🏽 I'm an A.I. engineer with a passion for building intelligent, automated applications using a range of databases and software frameworks. You can always catch me nerding out on some cool new tool, library or framework (heaven knows, we have enough to keep track of in the tech world these days 🚀), so feel free to reach out on my socials if you're in Toronto 🇨🇦 and wanna chat. 😄
 
 ## What will I focus on in this blog?
 
@@ -49,7 +48,7 @@ There are almost too many things going on in parallel in this space, but because
 
 ### Frameworks
 
-* [Pydantic](https://docs.pydantic.dev): Data validation and settings management via Python type annotations. [V2 of Pydantic](https://docs.pydantic.dev/latest/blog/pydantic-v2/) is built almost entirely in Rust 🦀
+* [Pydantic](https://docs.pydantic.dev): Data validation and settings management via Python type annotations. [V2 of Pydantic](https://docs.pydantic.dev/latest/blog/pydantic-v2/) is built entirely on top of Rust 🦀
 * [Robyn](https://robyn.tech/): An async web server with a Rust runtime, that [outperforms FastAPI](https://sansyrox.github.io/robyn/#/comparison) on initial benchmarks -- exciting to see where this is headed!
 
 ## 4. Other cool tech
