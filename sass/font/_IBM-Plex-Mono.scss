@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'IBMPlexMono';
+    src: local("IBM Plex Mono"), local("IBM-Plex-Mono"), local("IBMPlexMono"), local("IBM-Plex-Mono-Regular"), local("IBMPlexMono-Regular"), url("font/IBMPlexMono-Regular.woff2");//latin regular
+    font-display: swap;
+}
+@font-face {
+    font-family: 'IBMPlexMono';
+    src: local("IBM Plex Mono Italic"), local("IBM-Plex-Mono-Italic"), local("IBMPlexMono-Italic"), url("font/IBMPlexMono-Italic.woff2");//latin italic
+    font-style: italic;
+    font-display: swap;
+}

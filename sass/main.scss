@@ -1,5 +1,9 @@
 /* base
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* fonts
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+@use "font/IBM-Plex-Sans";
+@use "font/IBM-Plex-Mono";
 
 *,
 *::before,
@@ -51,15 +55,6 @@ a:focus-visible {
   ::-webkit-scrollbar-thumb:hover {
     background: #8a90a1a1;
   }
-}
-
-/* fonts
-  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
-@font-face {
-    font-family: 'IBMPlexSans';
-    src: local("IBMPlexSans"), url("font/IBMPlexSans-Regular.woff2"); //latin regular
-    font-display: swap;
 }
 
 /* prose
@@ -123,6 +118,14 @@ a:focus-visible {
     }  
   }
 
+  .youtube {
+    iframe {
+      border-style: none;
+      width: 100%;
+      height: 480px;
+      overflow: hidden;
+    }
+  }
 
   img {
     display: block;
@@ -158,6 +161,10 @@ a:focus-visible {
     color: var(--primary-color);
   }
 
+  li:not(.footnote-definition) {
+    margin-bottom: 0.5em;
+  }
+
   hr {
     border: none;
     background-color: var(--primary-pale-color);
@@ -191,7 +198,7 @@ a:focus-visible {
     font-size: 0.8em;
     padding: 1px 6px;
     margin: 0 2px;
-    color: var(--primary-color);
+    color: var(--inline-code-color);
     background-color: var(--primary-pale-color);
     border-radius: var(--inline-code-border-radius);
   }
@@ -625,7 +632,7 @@ header {
   }
 
   nav {
-    font-size: 1.4em;
+    font-size: 1.2em;
     display: flex;
     align-items: center;
 
@@ -874,7 +881,7 @@ body.post {
     ul {
       list-style-type: none;
       padding: 0;
-      line-height: 2;
+      line-height: 1.75em;
       margin: 0;
     }
 
