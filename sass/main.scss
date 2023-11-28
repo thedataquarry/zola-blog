@@ -99,8 +99,7 @@ a:focus-visible {
   p {
     font-size: 1em;
     line-height: inherit;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    hyphens: auto;
   }
 
   a {
@@ -159,10 +158,19 @@ a:focus-visible {
 
   li::marker {
     color: var(--primary-color);
+    font-size: 1.5em;
   }
 
-  li:not(.footnote-definition) {
+  ul li {
+    list-style-type: "‣";
+    padding-left: 1em;
+    margin-left: 0;
     margin-bottom: 0.5em;
+  }
+
+  ul li li {
+    list-style-type: "•";
+    margin-bottom: 0;
   }
 
   hr {
