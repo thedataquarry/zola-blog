@@ -1,7 +1,7 @@
 # Adapted from serene v2.1.2
 base_url = "https://thedataquarry.github.io"
 title = "The Data Quarry"
-description = "A.I. and data engineering from a Python and Rust perspective"
+description = "A.I. and data from a Python and Rust perspective"
 default_language = "en"
 output_dir = "public"
 compile_sass = true
@@ -16,7 +16,7 @@ taxonomies = [
 
 [markdown]  
 highlight_code = true
-highlight_theme = "css"
+highlight_theme = "nord"
 extra_syntaxes_and_themes = ["highlight_themes"]
 highlight_themes_css = [
     { theme = "serene-light", filename = "hl-light.css"},
@@ -26,7 +26,7 @@ render_emoji = false
 external_links_target_blank = false
 external_links_no_follow = true
 external_links_no_referrer = true
-smart_punctuation = false
+smart_punctuation = true
 
 [slugify]
 paths = "on"
@@ -39,7 +39,7 @@ anchors = "on"
 
 blog_name = "The Data Quarry"
 author = "Prashanth Rao"
-bio = "A.I. and Data Engineering from a Python and Rust perspective."
+bio = "A.I. and data from a Python and Rust perspective"
 avatar = "img/dataquarry-banner.png"
 # Set banners
 links = [
@@ -63,7 +63,6 @@ nav_wrapper_left = "{"
 nav_wrapper_right = "} ;"
 nav_wrapper_separator = ","
 
-display_author = false                     # Whether to display author name on homepage
 blog_categorized = false               # Whether to categorize blog posts
 blur_effect = true                    # Whether to turn on blur effect on navigation bar
 back_to_top = true                    # Whether to show back-to-top button on post pages
