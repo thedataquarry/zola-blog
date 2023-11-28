@@ -1,4 +1,6 @@
 <figure>
-    <img src="{{ src }}"{% if class %} class="{{class}}"{% endif %}{% if alt %} alt="{{alt}}"{% endif %}{% if w %} width="{{w}}"{% endif %}{% if h %} height="{{h}}"{% endif %} loading="lazy" />
-    <figcaption>{{alt}}</figcaption>
+    <img src="{{ src }}"{% if class %} class="{{class}}"{% endif %}{% if alt %} alt="{{alt | safe }}"{% endif %}{% if w %} width="{{w}}"{% endif %}{% if h %} height="{{h}}"{% endif %} loading="lazy" />
+    {% if alt %}
+    <figcaption>{{ alt | safe }}</figcaption>
+    {% endif %}
 </figure>

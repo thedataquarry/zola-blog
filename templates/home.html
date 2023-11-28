@@ -39,11 +39,9 @@
       <div id="text">
         <div>
           <span id="blog_name" style="font-size:150%;font-weight:bold">{{ config.extra.blog_name }}</span>
-          {% if config.extra.display_author -%}
-          <span id="author"> | {{ config.extra.author }}</span>
-          {% endif -%}
+          <hr>
+          <span id="bio">{{ config.extra.bio }}</span>
         </div>
-        <div id="bio"> {{ config.extra.bio }} </div>
       </div>
     </section>
     <section id="links">

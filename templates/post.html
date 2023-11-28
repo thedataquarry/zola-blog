@@ -91,7 +91,7 @@
           <div id="date">
             <span id="publish">{{ page.date | date }}</span>
             {% if page.updated and page.updated != page.date -%}
-            <span>Updated on <span id="updated">{{ page.updated | date }}</span></span>
+            <span>Updated: <span id="updated">{{ page.updated | date }}</span></span>
             {% endif -%}
           </div>
 
