@@ -8,3 +8,4 @@ Upcoming blog for the Data Quarry. This repo is to test out the Zola static site
 * Theme: Adapted version of [Serene](https://github.com/isunjn/serene)
 * Hosting: GitHub Pages
 * Deployment: GitHub Actions
+* Analytics: [Umami](https://umami.is/)
