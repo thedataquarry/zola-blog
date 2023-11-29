@@ -97,9 +97,9 @@
           {% endfor %}
         </div>
         {% endif %}
+        {% include "_footer.html" %}
       </section>
     {% endif %}
-    
   </main>
 </div>
 {% endblock content %}
@@ -112,5 +112,4 @@
   mermaid.initialize({ startOnLoad: true });
 </script>
 {% endif %}
-{% include "_footer.html" %}
 {% endblock script %}
