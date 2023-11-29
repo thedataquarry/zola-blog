@@ -216,9 +216,11 @@ As per the statement above, we serve the endpoints for the REST API with the rou
 ```
 https://localhost:8000/v1/rest/search
 ```
-{{< notice tip >}}
+
+{% tip(header="Tip") %}
 It's good practice to set a prefix to the router, for e.g., `/v1/rest` to indicate the version of the API and the fact that it's a REST API. The version number specifies to users and developers which version of the API they are calling (in case there are breaking changes in the future).
-{{< /notice >}}
+{% end %}
+
 ### Test endpoint
 
 Pass a simple search query with the terms `tuscany red` with a max price of 50 to a cURL request as follows.
