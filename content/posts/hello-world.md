@@ -1,12 +1,13 @@
 +++
 title = "Hello, world!"
 description = "Introductory post to the Data Quarry blog"
-date = 2023-04-29
+date = 2023-11-27
 updated = 2023-11-27
 draft = false
 
 [taxonomies]
 tags = ["rust", "general"]
+categories = ["General"]
 
 [extra]
 lang = "en"

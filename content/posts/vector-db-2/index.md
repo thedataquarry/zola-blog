@@ -7,6 +7,7 @@ draft = false
 
 [taxonomies]
 tags = ["vector-db"]
+categories = ["Databases"]
 
 [extra]
 lang = "en"

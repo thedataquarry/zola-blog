@@ -6,6 +6,7 @@ draft = false
 
 [taxonomies]
 tags = ["embedded-db", "graph-db"]
+categories = ["Databases"]
 
 [extra]
 lang = "en"

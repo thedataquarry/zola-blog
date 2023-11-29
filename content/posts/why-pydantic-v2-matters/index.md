@@ -7,6 +7,7 @@ draft = false
 
 [taxonomies]
 tags = ["pydantic", "rust"]
+categories = ["Frameworks"]
 
 [extra]
 lang = "en"

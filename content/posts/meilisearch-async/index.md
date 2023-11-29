@@ -7,6 +7,7 @@ draft = false
 
 [taxonomies]
 tags = ["meilisearch", "async", "pydantic"]
+categories = ["Databases"]
 
 [extra]
 lang = "en"

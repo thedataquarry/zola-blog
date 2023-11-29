@@ -6,6 +6,7 @@ draft = false
 
 [taxonomies]
 tags = ["rust"]
+categories = ["Languages"]
 
 [extra]
 lang = "en"
