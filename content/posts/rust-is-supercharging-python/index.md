@@ -1,5 +1,5 @@
 +++
-title = "Rust is supercharging Python from the ground up: Let's all embrace it!"
+title = "How Rust 🦀 is supercharging Python from the ground up"
 description = "How mature, low-level tooling in Rust is causing a transformation in the PyData ecosystem"
 date = 2023-06-15
 draft = false
