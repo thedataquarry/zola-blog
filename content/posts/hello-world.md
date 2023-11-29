@@ -1,8 +1,7 @@
 +++
 title = "Hello, world!"
 description = "Introductory post to the Data Quarry blog"
-date = 2023-11-27
-updated = 2023-11-27
+date = 2023-04-29
 draft = false
 
 [taxonomies]

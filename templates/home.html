@@ -68,6 +68,7 @@
     {% if config.extra.homepage_layout == 'about' %}
       <section id="brief" class="prose">
         {{ section.content | trim | safe }}
+        {% include "_footer.html" %}
       </section>
     {% elif config.extra.homepage_layout == 'list' %}
       {% set blog_section_path = config.extra.blog_section_path | trim_start_matches(pat="/") %}

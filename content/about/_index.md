@@ -17,6 +17,6 @@ I'm an A.I. engineer with a passion for building intelligent, automated applicat
 
 Although I've been coding in Python for 10+ years, I love nerding out on Rust 🦀, a programming language I genuinely believe is going to revolutionize computing in this decade and beyond.
 
-This site is built using [Zola](https://github.com/getzola/zola), a fast, lightweight static site generator written in Rust, so have fun reading, and let's build more things in Rust! 💪🏽
+This site is built using [Zola](https://github.com/getzola/zola), a fast, lightweight static site generator written in Rust, so have fun reading, and let's go build more things in Rust! 💪🏽
 
 {{ figure(src="/img/prao.png" alt="Me, on a glorious spring day in Toronto 🇨🇦 😎" w="400" h="400") }}
