@@ -49,13 +49,12 @@ links = [
     { name = "Buy me a coffee", icon = "buymeacoffee", url = "https://www.buymeacoffee.com/prrao87" }
 ]
 
-homepage_layout = "list"             # "about" | "list"
+homepage_layout = "about"             # "about" | "list"
 
 sections = [
     { name = "about", path = "/about", is_external = false },
     { name = "blog", path = "/posts", is_external = false },
     { name = "projects", path = "/projects", is_external = false },
-    # { name = "tags", path = "/tags", is_external = false },
 ]
 blog_section_path = "/posts"
 
