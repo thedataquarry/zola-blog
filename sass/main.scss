@@ -163,9 +163,9 @@ a:focus-visible {
 
   ul li {
     list-style-type: "‣";
-    padding-left: 1em;
+    padding-left: 0.5em;
     margin-left: 0;
-    margin-bottom: 0.5em;
+    margin-bottom: 0;
   }
 
   // Make second level list items use a different marker and spacing
@@ -524,10 +524,9 @@ body.homepage {
 
     img {
       height: var(--avatar-size);
-    //   width: var(--avatar-size);
       border-radius: 50%;
     }
-a
+
     #text {
       font-size: 1.25em;
       display: flex;
