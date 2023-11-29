@@ -156,7 +156,7 @@ a:focus-visible {
     color: var(--text-pale-color);
   }
 
-  li::marker {
+  ul li::marker {
     color: var(--primary-color);
     font-size: 1.5em;
   }
@@ -168,6 +168,7 @@ a:focus-visible {
     margin-bottom: 0.5em;
   }
 
+  // Make second level list items use a different marker and spacing
   ul li li {
     list-style-type: "•";
     margin-bottom: 0;
