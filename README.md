@@ -1,6 +1,6 @@
-# Sample blog
+# The Data Quarry blog
 
-Upcoming blog for the Data Quarry. This repo is to test out the Zola static site generator settings and GitHub Pages deployment.
+My personal blog and website, where I write about A.I. and data from a Python/Rust perspective.
 
 ## Stack
 
