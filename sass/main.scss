@@ -476,7 +476,7 @@ body.prose-page {
     padding: 6px 15px;
     margin: 1px 0;
     border-radius: 2px;
-    font-size: 1.1em;
+    font-size: 1.2em;
     text-decoration: none;
     color: var(--primary-color);
     -webkit-tap-highlight-color: transparent;
@@ -654,8 +654,8 @@ header {
     }
 
     .separator {
-      width: 24px;
-      text-align: center;
+      width: 0.75em;
+      text-align: left;
       line-height: 1;
       cursor: pointer;
       border: none;
