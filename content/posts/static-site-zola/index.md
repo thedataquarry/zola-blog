@@ -2,7 +2,7 @@
 title = "Why I chose Zola to build this site"
 description = "My thoughts on blogging, static sites and how to deploy a Zola site via GitHub Pages"
 date = 2023-11-29
-draft = true
+draft = false
 
 [taxonomies]
 tags = ["general"]
@@ -242,9 +242,7 @@ In my case, I navigated to the advanced DNS settings for my domain on Namecheap,
 
 {{ figure(src="cname.png") }}
 
-Note the `CNAME Record` that points to my GitHub Pages site on the last line. This allows me to access my site on `https://thedataquarry.com`.
-
-On the Zola side, I simply create a file called `CNAME` in the `static` folder, and add the following line to it:
+I created the list of A records to point my apex domain to the IP addresses for GitHub Page, as per the GitHub page docs. Note the `CNAME Record` on the last line (this is important). On the Zola side, I simply create a file called `CNAME` in the `static` folder, and add the following line to it:
 
 ```sh
 thedataquarry.com
