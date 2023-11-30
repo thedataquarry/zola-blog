@@ -183,9 +183,13 @@ To get the site up and running on the web, you'll need to deploy it somewhere. I
 
 ## How to deploy?
 
+### Netlify or Vercel
+
+The easiest way to deploy a Zola site is to use a service like [Netlify](https://www.netlify.com/) or [Vercel](https://vercel.com/). Both allow you to deploy static sites on a free tier, and directly connect to the source repo in which the code is based. I haven't used either of these services, but the Zola [docs](https://www.getzola.org/documentation/deployment/overview/) contain good instructions for them.
+
 ### GitHub Pages
 
-GitHub Pages is a free service that allows you to host static sites right from your GitHub repo. It's super easy to set up, and you can get started in a few minutes. The only caveat is that if you want to host a site without specifying a custom domain name, it has to have the same name as your GitHub username. For example, this site is based in the `thedataquarry` GitHub organization, so the site is available at the following URL: `https://thedataquarry.github.io`.
+A slightly more involved (but totally free) approach is to use GitHub Pages, which allows you to host static sites right from your GitHub repo. The only caveat is that if you want to host a site without specifying a custom domain name, it has to have the same name as your GitHub username. For example, this site is based in the `thedataquarry` GitHub organization, so the site is available at the following URL: `https://thedataquarry.github.io`.
 
 To deploy a GitHub pages site, it helps to have some basic familiarity with [GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions). GitHub Actions are a way to automate tasks within your GitHub repo, such as running tests, building and deploying your site, and so on.
 
@@ -193,6 +197,7 @@ To deploy a GitHub pages site, it helps to have some basic familiarity with [Git
 
 Create a directory called `.github/workflows` in the root of your repo, and create a file called `build.yml` in it. This file will contain the instructions for GitHub to build and deploy your site. This site uses the standard Zola GitHub Action, which is available [here](https://github.com/shalzz/zola-deploy-action).
 
+{% codeblock(name="build.yml") %} 
 ```yaml
 name: Deploy Zola site to Pages
 
@@ -208,29 +213,48 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Build and deploy
+        # v0.17.2 didn't work for me for some reason, so I used v0.17.1
+        # master also worked: shalzz/zola-deploy-action@master
         uses: shalzz/zola-deploy-action@v0.17.1
         env:
           PAGES_BRANCH: gh-pages
           TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
+{% end %}
 
 Once a Markdown file has been written and pushed (along with any other changes to other files) to the `main` branch, this action triggers and builds the site on the `gh-pages` branch.
 
 {% warning(header="Note") %}
-To deploy the site, make sure that the following settings are set in your repo's `Settings` > `Pages` section:
+The above `build.yml` just *builds* the site on the `gh-pages` branch. To make it accessible on the web, navigate to the `Settings` > `Pages` section of the repo and set the following:
 
 * Build and Deployment:
   * Source: "Deploy from a branch"
   * Select the `gh-pages` branch
+
+This will host the site and make it accessible on `https://myusername.github.io`.
 {% end %}
 
-### Netlify or Vercel
+#### Optional step: Set up a custom domain
 
-An alternative to GitHub Pages, if you aren't comfortable with using GitHub actions, is to use a service like [Netlify](https://www.netlify.com/) or [Vercel](https://vercel.com/). Both of these services allow you to deploy static sites on a free tier, and directly connect to the source repo in which the code is based. I haven't used either of these services, but the Zola [docs](https://www.getzola.org/documentation/deployment/overview/) contain good instructions for them.
+It's possible to point the deployed site on `https://myusername.github.io` to your own custom domain. Assuming you have a domain name purchased on Namecheap, you can follow the instructions [here](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site) to set up a custom domain. 
+
+In my case, I navigated to the advanced DNS settings for my domain on Namecheap, and added the following records:
+
+{{ figure(src="cname.png") }}
+
+Note the `CNAME Record` that points to my GitHub Pages site on the last line. This allows me to access my site on `https://thedataquarry.com`.
+
+On the Zola side, I simply create a file called `CNAME` in the `static` folder, and add the following line to it:
+
+```sh
+thedataquarry.com
+```
 
 ## Conclusions
 
-I hope this post inspires you to write, and how to get started with setting up your own static site over which you have full control. I think that putting your thoughts and learnings down into a blog is a great way to push your boundaries, contribute to open source, and to make a mark on the world, no matter how small. Good luck on your journey! 🚀
+In this post, I covered some of the basics of static sites, SSGs, and how to deploy a Zola site via GitHub Pages.
+
+I hope this post inspires you to setting up your own static site and get to writing! Putting down your thoughts and learnings in writing is a great way to push your boundaries, contribute to the open sharing of knowledge, and to make a mark on the world, no matter how small. Good luck on your journey! 🚀
 
 ## Code
 
