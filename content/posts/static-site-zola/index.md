@@ -242,7 +242,7 @@ In my case, I navigated to the advanced DNS settings for my domain on Namecheap,
 
 {{ figure(src="cname.png") }}
 
-I created the list of A records to point my apex domain to the IP addresses for GitHub Page, as per the GitHub page docs. Note the `CNAME Record` on the last line (this is important). On the Zola side, I simply create a file called `CNAME` in the `static` folder, and add the following line to it:
+I created the list of A records to point my apex domain to the IP addresses for the GitHub Page, as per the docs. Note the `CNAME Record` on the last line (this is important). On the Zola side, I simply create a file called `CNAME` in the `static` folder, and add the following line to it:
 
 ```sh
 thedataquarry.com
