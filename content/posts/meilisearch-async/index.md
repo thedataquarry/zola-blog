@@ -182,7 +182,7 @@ Bulk index took 164.3521 seconds
 
 ## Case 2: Async
 
-The async version uses the `meilisearch-python-async` client[^1], whose API is remarkably similar to the sync client's.
+The async version uses the `meilisearch-python-sdk` async client[^1], whose API is remarkably similar to the official sync client from Meilisearch.
 
 
 ```python
