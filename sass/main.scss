@@ -716,6 +716,7 @@ header {
 
     @media (max-width: 1024px) {
       & {
+        z-index: 99;
         display: inline-block;
 
         &.active {
