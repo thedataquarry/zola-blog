@@ -165,7 +165,7 @@ class Wine(BaseModel):
 ```
 {% end %}
 
-The following code in Pydantic v2 performs the same actions as the v1 version. Note the changed lines.
+The following code in Pydantic v2 performs the same actions as the v1 version. Note the changed lines highlighted in the code below.
 
 {% codeblock(name="Pydantic v2") %}
 ```python,linenos,hl_lines=19 28 36
