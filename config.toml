@@ -40,7 +40,7 @@ anchors = "on"
 blog_name = "The Data Quarry"
 author = "Prashanth Rao"
 bio = "A.I. and data from a Python and Rust perspective"
-avatar = "img/dataquarry-banner.png"
+avatar = "img/dataquarry-banner.webp"
 # Set banners
 links = [
     { name = "GitHub", icon = "github", url = "https://github.com/prrao87" },

@@ -126,6 +126,11 @@ a:focus-visible {
     }
   }
 
+  .twitter {
+    display: block;
+    max-width: 100%;
+  }
+
   img {
     display: block;
     max-width: 100%;
@@ -204,7 +209,7 @@ a:focus-visible {
   td>code,
   th>code {
     font-family: var(--code-font);
-    font-size: 0.8em;
+    font-size: 0.9em;
     padding: 1px 6px;
     margin: 0 2px;
     color: var(--inline-code-color);
@@ -528,15 +533,10 @@ body.homepage {
     }
 
     #text {
-      font-size: 1.25em;
+      font-size: 1.2em;
       display: flex;
       flex-direction: column;
       justify-content: space-around;
-    }
-
-    #id {
-      margin-left: 0.5em;
-      color: var(--primary-color);
     }
 
     #bio {
@@ -637,9 +637,9 @@ header {
   }
 
   nav {
-    font-size: 1.1em;
-    display: flex;
-    align-items: center;
+    font-size: 17px;
+    display: fixed;
+    align-items: left;
 
     a {
       color: var(--text-color);

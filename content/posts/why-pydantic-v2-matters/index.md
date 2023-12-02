@@ -45,8 +45,7 @@ Since 2022, PyO3 has been having more and more of an impact on the PyData ecosys
 
 In 2023, David Hewitt, a core maintainer of PyO3, a library that's empowering a whole new generation of Python developers to write faster, more efficient packages for Python in Rust, began working at Pydantic, which further solidifies the importance of Rust in the PyData ecosystem.
 
-{{ figure(src="david-hewitt-pydantic.png" alt="Source: <a href='https://twitter.com/pydantic/status/1671233172867256320'>Pydantic Twitter</a>") }}
-
+{{ twitter(url="https://twitter.com/pydantic/status/1671233172867256320" class="twitter") }}
 
 ### How does Pydantic v2 do its magic?
 
@@ -285,7 +284,7 @@ def validate(data: list[JsonBlob]) -> list[JsonBlob]:
 
 To time each validation cycle, we wrap the `run` function inside a `Timer` context manager as follows. Note that this requires that the `codetiming` library is installed: `pip install codetiming`.
 
-```python
+```python,linenos
 from codetiming import Timer
 
 def run():
