@@ -51,6 +51,12 @@
         {% endfor %}
       </div>
       <div id="right">
+        {% set rss_icon = load_data(path="static/icon/rss.svg") %}
+        {% if section.generate_feed -%}
+        <a href="{{ blog_section_path }}/{{ config.feed_filename }}" aria-label="rss feed">{{ rss_icon | safe }}</a>
+        {% elif config.generate_feed -%}
+        <a href="/{{ config.feed_filename }}" aria-label="rss feed">{{ rss_icon | safe }}</a>
+        {% endif %}
         {% for link in config.extra.links -%}
         <a href="{{ link.url }}" aria-label="{{ link.name }}" target="_blank" rel='noreferrer noopener'>
           {% set icon_path = "static/icon/" ~ link.icon ~ ".svg" %}
@@ -68,7 +74,6 @@
     {% if config.extra.homepage_layout == 'about' %}
       <section id="brief" class="prose">
         {{ section.content | trim | safe }}
-        {% include "_footer.html" %}
       </section>
     {% elif config.extra.homepage_layout == 'list' %}
       {% set blog_section_path = config.extra.blog_section_path | trim_start_matches(pat="/") %}
@@ -98,9 +103,9 @@
           {% endfor %}
         </div>
         {% endif %}
-        {% include "_footer.html" %}
       </section>
     {% endif %}
+    {% include "_footer.html" %}
   </main>
 </div>
 {% endblock content %}

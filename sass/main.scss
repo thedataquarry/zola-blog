@@ -297,7 +297,7 @@ a:focus-visible {
     }
 
     .copy {
-    //   z-index: 0;
+      z-index: 1;
       position: absolute;
       right: 0.6em;
       top: 0.6em;
@@ -324,7 +324,7 @@ a:focus-visible {
     margin-top: calc(0px - 1.2em - 24px - 1em - 1.5px);
 
     .filename {
-    //   z-index: 0;
+      z-index: 1;
       position: relative;
       top: calc(1.2em + 24px + 1em + 1.5px);
       padding: 12px 16px;
@@ -514,7 +514,6 @@ body.homepage {
   main {
     width: 100%;
     max-width: var(--homepage-max-width);
-    // padding: 3em 0 6em;
     padding: 45px 15px 30px;
   }
 
@@ -568,7 +567,7 @@ body.homepage {
     #left {
       display: flex;
       flex-wrap: wrap;
-      gap: 1em;
+      gap: 0.75em;
 
       a {
         border-bottom: 1.5px solid var(--primary-color);
@@ -578,16 +577,13 @@ body.homepage {
 
     #right {
       display: flex;
-      gap: 0.5em;
+      gap: 10px;
       margin-left: auto;
 
       a,
       button {
-        width: 24px;
-        height: 24px;
-      }
-
-      button {
+        width: 20px;
+        height: 20px;
         padding: 0;
         border: none;
         background-color: transparent;
@@ -688,7 +684,7 @@ header {
 
   #btns {
     display: flex;
-    gap: 1em;
+    gap: 10px;
     align-items: center;
     padding-top: 1.5px;
 
@@ -716,7 +712,6 @@ header {
 
     @media (max-width: 1024px) {
       & {
-        z-index: 99;
         display: inline-block;
 
         &.active {
@@ -732,7 +727,7 @@ header {
 
 footer {
   font-size: 0.95rem;
-  padding: 0;
+  padding: 0 15px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -990,6 +985,7 @@ body.post {
 
     @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
       aside.blur {
+        z-index: 99;
         background-color: fade(var(--bg-color), 75%);
         -webkit-backdrop-filter: blur(8px);
         backdrop-filter: blur(8px);
