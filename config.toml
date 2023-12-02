@@ -46,7 +46,7 @@ links = [
     { name = "GitHub", icon = "github", url = "https://github.com/prrao87" },
     { name = "Twitter", icon = "twitter", url = "https://twitter.com/tech_optimist" },
     { name = "LinkedIn", icon = "linkedin", url = "https://www.linkedin.com/in/prrao87" },
-    # { name = "Buy me a coffee", icon = "buymeacoffee", url = "https://www.buymeacoffee.com/prrao87" }
+    { name = "Buy me a coffee", icon = "buymeacoffee", url = "https://www.buymeacoffee.com/prrao87" }
 ]
 
 homepage_layout = "about"             # "about" | "list"
