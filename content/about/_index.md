@@ -19,4 +19,4 @@ Although I've been coding in Python for 10+ years, I love nerding out on Rust �
 
 This site is built using [Zola](https://github.com/getzola/zola), a fast, lightweight static site generator written in Rust, so have fun reading, and let's go build more things in Rust! 💪🏽
 
-{{ figure(src="/img/prao.png" alt="Me, on a glorious spring day in Toronto 🇨🇦 😎" w="400" h="400") }}
+{{ figure(src="/img/prao.webp" alt="Me, on a glorious spring day in Toronto 🇨🇦 😎" w="400" h="400") }}
