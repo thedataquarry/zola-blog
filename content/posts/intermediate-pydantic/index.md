@@ -1,8 +1,8 @@
 +++
 title = "Why Pydantic just keeps getting better"
 description = "Understanding the latest features and optimizations of Pydantic v2 that provide a 12x speedup over v1"
-date = 2023-11-30
-draft = true
+date = 2023-12-02
+draft = false
 
 [taxonomies]
 tags = ["pydantic", "rust"]
