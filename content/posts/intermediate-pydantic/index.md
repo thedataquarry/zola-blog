@@ -153,7 +153,7 @@ The goal of the validator is to coerce bad data types to the types we want, and 
 
 ### Improved validator
 
-The improved validator makes use of some new features in Pydantic v2, and is shown below.
+The improved validator makes use of some new features in Pydantic v2 as shown below.
 
 {% codeblock(name="schemas_improved.py") %}
 ```py
@@ -213,7 +213,7 @@ There are a number of differences between this validator and the previous one:
 
 * The `Wine` model in the improved version is a [`TypedDict`](https://docs.python.org/3/library/typing.html#typing.TypedDict) instead of a `BaseModel`. This is a new feature in Pydantic v2 that allows us to define a schema using Python's native `TypedDict` type (which, at runtime, is a plain `dict`)
 
-* `field_validator` is used instead of `model_validator`. These operate only on specific fields, and we apply the the `NotRequired` type to all fields that we want to be able to omit from the final output if their value is either `None` or `'null'`.
+* `field_validator` is used instead of `model_validator`. These operate only on specific fields, and we apply the the `NotRequired` type to all fields that we want to be able to omit from the final output if their value is either `None` or `'null'`. This is done via a new exception type `PydanticOmit`
   
 * A `TypeAdapter` is used, which exposes only [some of the functionality](https://docs.pydantic.dev/latest/api/type_adapter/) of `BaseModel`. This is much more performant, as it avoids the overhead of the `BaseModel` class when simply performing validation on a `dict`.
 
@@ -225,7 +225,7 @@ As I [learned from](https://github.com/prrao87/pydantic-benchmarks/pull/1) Samue
 
 ### Benchmark code
 
-The benchmark is run using `pytest-benchmark`. First, the data is into a test fixture.
+The benchmark is run using `pytest-benchmark`. The data is first loaded into a test fixture.
 
 ```py
 from typing import Any
@@ -243,7 +243,7 @@ def data() -> list[dict[str, Any]]:
     return data
 ```
 
-The from each JSON record in the dataset are unpacked as `kwargs` and passed to the validator to produce a Pydantic model, shown below. The model is then dumped back to a `dict` via `model_dump` for downstream use.
+The key-value pairs from each JSON record in the dataset are unpacked as `kwargs` and passed to the validator to produce a Pydantic mode as shown below. The model is then dumped back to a `dict` via `model_dump` for downstream use.
 
 {% codeblock(name="basic_validator") %}
 ```py
@@ -272,7 +272,7 @@ def test_validate_improved(benchmark, data):
 ```
 {% end %}
 
-Note how the `validate_python` method is used instead of serializing a `dict` to a Pydantic model. This is *much* better for performance, and should be used when the only goal is to validate a `dict` against a schema.
+Note how the `validate_python` method is used instead of serializing a `dict` to a Pydantic model. This is *much* better for performance, and as a rule of thumb, should be used when the only goal is to validate a `dict` against a schema.
 
 The benchmark is then run via [`benchmark_validator.py`](https://github.com/prrao87/pydantic-benchmarks/blob/main/v2/benchmark_validator.py).
 
@@ -284,7 +284,7 @@ pytest benchmark_validator.py --benchmark-sort=fullname --benchmark-warmup-itera
 
 ## Reasons for performance improvement
 
-The performance improvements can be divided into two categories:
+The performance improvements can be attributed to multiple causes, broadly categorized as follows:
 
 ### Improvements at the Rust level
 
@@ -299,7 +299,7 @@ The performance improvements can be divided into two categories:
 
 ## Towards a nogil future
 
-Going forward, there are even more improvements happening at the very low level, related to PyO3 and how to work around the Python Global Interpreter Lock (GIL).
+Going forward, there are even more improvements happening at a very low level, related to PyO3 and how to work around the Python Global Interpreter Lock (GIL).
 
 {{ twitter(url="https://twitter.com/pydantic/status/1726939559680721200" class="twitter") }}
 
