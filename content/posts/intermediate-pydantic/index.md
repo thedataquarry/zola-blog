@@ -43,7 +43,7 @@ The Python API we, the end users, are used to interfacing with, is built directl
 
 {{ figure(src="pydantic-stack.png" alt="The multi-layer stack of Pydantic v2") }}
 
-The lowest layers of Pydantic are composed of a multitude of Rust crates that form `pydantic-core` that we're familiar with. The top (user-facing) layer is the Python API. The intermediate laters, PyO3 and `maturin`, are explained in more detail below.
+The lowest layers of Pydantic are composed of a multitude of Rust crates that form what we know as `pydantic-core`. The top (user-facing) layer is the Python API. The intermediate layers, PyO3 and `maturin`, are explained in more detail below.
 
 ### Rust crates
 
