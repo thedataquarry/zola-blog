@@ -6,10 +6,9 @@ draft = false
 
 [taxonomies]
 tags = ["embedded-db", "graph-db"]
-categories = ["Databases"]
+categories = ["Tools"]
 
 [extra]
-lang = "en"
 toc = true
 comment = true
 math = true

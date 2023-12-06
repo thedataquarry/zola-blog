@@ -347,15 +347,18 @@ a:focus-visible {
 
   .footnote-definition {
     display: flex;
-    
+ 
     .footnote-definition-label {
       position: static;
       font-size: 1em;
       line-height: inherit;
       vertical-align: auto;
       margin-right: 0.5em;
+      &::before {
+        content: "[";
+      }
       &::after {
-        content: ".";
+        content: "]";
       }
     }
 
@@ -427,10 +430,6 @@ a:focus-visible {
       color: var(--callout-tip-color);
       border-color: var(--callout-tip-color);
     }
-  }
-
-  .mermaid {
-    background: #fff;
   }
 }
 

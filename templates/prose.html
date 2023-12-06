@@ -9,6 +9,44 @@
   <meta name="description" content="{{ section.description }}">
 {% endblock desc %}
 
+{% block seo -%}
+  {{ super() }}
+
+  {%- set og_title = section.title -%}
+
+  {% if config.title and section.title -%}
+  	{% set title = section.title ~ " | " ~ config.title -%}
+  {% elif section.title -%}
+		{% set title = section.title -%}
+  {% elif config.title -%}
+    {% set title = config.title -%}
+  {% else -%}
+    {% set title = "" -%}
+  {% endif -%}
+
+  {% if section.extra.author -%}
+		{% set author = section.extra.author -%}
+  {% endif -%}
+
+  {% if section.description -%}
+		{% set description = section.description -%}
+  {% endif -%}
+
+  {% if section.extra.image -%}
+		{% set image = section.extra.image -%}
+  {% endif -%}
+
+  {% if section.extra.image_height -%}
+		{% set image_height = section.extra.image_height -%}
+  {% endif -%}
+
+  {% if page.extra.image_width -%}
+		{% set image_width = section.extra.image_width -%}
+  {% endif -%}
+
+  {{ macros::seo(title=title, og_title=og_title, author=author, description=description, site_url=site_url, image=image, image_height=image_height, image_width=image_width) }}
+{%- endblock seo %}
+
 {% block head %}
 {% if config.markdown.highlight_theme == "css" %}
 <link id="hl" rel="stylesheet" type="text/css" href="/hl-light.css" />
@@ -63,10 +101,4 @@
 
 {% block script %}
 <script src="/js/lightense.min.js"></script>
-{% if section.extra.mermaid %}
-<script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-  mermaid.initialize({ startOnLoad: true });
-</script>
-{% endif %}
 {% endblock script %}

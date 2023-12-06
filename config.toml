@@ -84,3 +84,15 @@ footer_credits = true                 # Whether to show "powered by zola and ser
 not_found_title = "404"
 not_found_error_text = "Not Found"
 not_found_recover_text = "« back to home »"
+
+## Open Graph + Twitter Cards
+[extra.seo]
+# this image will be used as fallback if a page has no image of its own
+image = "img/dataquarry-banner.png"
+image_height = 0
+image_width = 0
+og_locale = "en_US"
+
+  [extra.seo.twitter]
+  site = "tech_optimist"
+  creator = "tech_optimist"

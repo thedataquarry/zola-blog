@@ -6,10 +6,9 @@ draft = false
 
 [taxonomies]
 tags = ["neo4j", "async", "pydantic", "graph-db"]
-categories = ["Databases"]
+categories = ["Tools"]
 
 [extra]
-lang = "en"
 toc = true
 comment = true
 +++

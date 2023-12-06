@@ -1,3 +1,4 @@
+{% import "macros.html" as macros %}
 <!DOCTYPE html>
 
 <html lang="{% block lang %}{% endblock lang %}">
@@ -6,6 +7,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="light dark">
+
+  {% block seo %}
+    {%- set site_url = current_url | default(value=get_url(path="404.html")) -%}
+    {% set author = config.extra.author | default(value="") -%}
+    {% set description = config.description | default(value="") -%}
+    {% set image = config.extra.seo.image | default(value="") -%}
+    {% set image_height = config.extra.seo.image_height | default(value=0) -%}
+    {% set image_width = config.extra.seo.image_width | default(value=0) -%}
+  {% endblock seo %}
+
   {% block desc %}{% endblock desc %}
   <title>{% block title %}{% endblock title %}</title>
   <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">

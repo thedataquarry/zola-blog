@@ -7,10 +7,9 @@ draft = false
 
 [taxonomies]
 tags = ["vector-db"]
-categories = ["Databases"]
+categories = ["Tools"]
 
 [extra]
-lang = "en"
 toc = true
 comment = true
 math = true

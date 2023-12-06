@@ -9,7 +9,6 @@ tags = ["general"]
 categories = ["General"]
 
 [extra]
-lang = "en"
 toc = true
 comment = true
 +++
