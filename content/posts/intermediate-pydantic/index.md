@@ -9,7 +9,6 @@ tags = ["pydantic", "rust"]
 categories = ["Frameworks"]
 
 [extra]
-lang = "en"
 toc = true
 comment = true
 +++

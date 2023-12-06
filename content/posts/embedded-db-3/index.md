@@ -6,10 +6,9 @@ draft = false
 
 [taxonomies]
 tags = ["embedded-db", "vector-db"]
-categories = ["Databases"]
+categories = ["Tools"]
 
 [extra]
-lang = "en"
 toc = true
 comment = true
 +++

@@ -7,10 +7,9 @@ draft = false
 
 [taxonomies]
 tags = ["meilisearch", "async", "pydantic"]
-categories = ["Databases"]
+categories = ["Tools"]
 
 [extra]
-lang = "en"
 toc = true
 comment = true
 +++

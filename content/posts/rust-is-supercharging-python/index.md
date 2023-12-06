@@ -9,7 +9,6 @@ tags = ["rust"]
 categories = ["Languages"]
 
 [extra]
-lang = "en"
 toc = true
 comment = true
 +++
