@@ -137,7 +137,7 @@ I hope this post did a fair job of highlighting why I'm so passionate about supp
 
 To wrap up, I'll list some key points to remember regarding the larger open source ecosystem.
 
-* The majority of people out there don't know you exist. OSS communities are a great way to become visible to people from literally anywhere in the world, but this can take consistent effort and time.
+* The majority of people out there don't know you exist. OSS communities are a great way to become visible to people who are literally anywhere in the world, but gaining this visibility can take consistent effort and time.
 
 * The advancement of knowledge in the open source world relies on publicly visible contributions and collaboration, so do your best to put your work out there (whenever permissible). Use artificial data and anonymized results to showcase your projects, if required.
 
