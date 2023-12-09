@@ -156,6 +156,7 @@ For me, these were the main requirements I had in order to write productively. S
 * Code syntax highlighting
 * Customizable themes and layouts
 * Table of contents
+* Footnotes and references
 * Callout boxes (`info`, `warning`, etc.)
 * Comments
 * Privacy-focused site analytics
