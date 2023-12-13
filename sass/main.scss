@@ -62,13 +62,13 @@ a:focus-visible {
 
 .prose {
   h1 {
-    font-size: 1.5em;
+    font-size: 1.4em;
     font-weight: bolder;
     margin: 1em 0 0.5em 0;
   }
 
   h2 {
-    font-size: 1.3em;
+    font-size: 1.25em;
     padding-top: 65px;
     margin-top: -45px;
   }
@@ -97,7 +97,7 @@ a:focus-visible {
   }
 
   p {
-    font-size: 1em;
+    font-size: var(--paragraph-font-size);
     line-height: inherit;
     hyphens: auto;
   }
@@ -464,7 +464,7 @@ body.prose-page {
 
 .layout-list {
   .category {
-    font-size: 1.3em;
+    font-size: 1.4em;
     margin: 2em 15px 1em;
   }
 
@@ -480,7 +480,7 @@ body.prose-page {
     padding: 6px 15px;
     margin: 1px 0;
     border-radius: 2px;
-    font-size: 1.2em;
+    font-size: 1.3em;
     text-decoration: none;
     color: var(--primary-color);
     -webkit-tap-highlight-color: transparent;
@@ -551,7 +551,7 @@ body.homepage {
     align-items: center;
     flex-wrap: wrap;
     gap: 0.5em 1em;
-    font-size: 1.25em;
+    font-size: var(--paragraph-font-size);
 
     a,
     button {
