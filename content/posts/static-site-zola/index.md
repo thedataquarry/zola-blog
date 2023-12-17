@@ -83,7 +83,11 @@ Zola is:
 
 [^2]: Creator of Zola on their [GitHub repo](https://github.com/getzola/zola)
 
-Hugo, the world's most popular SSG written in Golang, was my first choice until recently. However, once I discovered Zola, an equivalent SSG written in Rust, I was immediately hooked.
+## Moving on from Hugo
+
+Hugo, the world's most popular SSG written in Golang, was my first choice until recently. However, once I discovered Zola, an equivalent SSG written in Rust, I was immediately hooked. Just like the creator of Zola mentioned, the main issue for me with Hugo is its underlying Go template engine, which made it immensely difficult to customize the look and feel of a theme I liked. I found myself spending hours, or even days, trying to figure out how to get my site to look the way I wanted it to, rather than actually writing content.
+
+Although Hugo is hugely popular and there's tons of examples online, it was still proving too hard for me to learn how to effectively use its templates and short codes. Zola addressed all these concerns, and more. Within a few days of looking up the documentation on Zola's template engine, [Tera](https://keats.github.io/tera/), I was productive enough to get my site's customizations up and running.
 
 ## The anatomy of a Zola site
 
@@ -127,12 +131,6 @@ A Zola site is just a collection of files and folders, with a specific structure
 * `static` is the folder where you'll keep all your static assets, such as images, fonts, and JavaScript files.
 * `templates` is the folder where you'll keep your HTML templates, which can be customized via [shortcodes](https://www.getzola.org/documentation/content/shortcodes/)
   * Zola uses the [Tera](https://tera.netlify.app/) template engine, which allows you to generate HTML pages via a template language very much like Python's Jinja2.
-
-## Importance of template engine
-
-The main issue for me with Hugo is its underlying Go template engine, which made it immensely difficult to customize the look and feel of a theme I liked. I found myself spending hours, or even days, trying to figure out how to get my site to look the way I wanted it to, rather than actually writing content.
-
-Although Hugo is hugely popular and there's tons of examples online, it was still proving too hard and unintuitive for to learn how templates work. Zola addressed all these concerns, and more. Within a few days of looking up the documentation on Zola's template engine, [Tera](https://keats.github.io/tera/), I was productive enough to get my site's customizations up and running.
 
 ## Steps to setting up a Zola site
 
