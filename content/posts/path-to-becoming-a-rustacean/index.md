@@ -73,7 +73,7 @@ Rust's strict compiler can be frustrating for newcomers to the language, but it 
 
 I've been learning about Rust for the past year, and, like many others, I've found it to be a very different language from what I'm used to. When learning a new programming language, conventional wisdom states that you go "bottom-up", starting with the fundamental concepts and building up from there -- this is typically done via books and tutorials. Alternatively, a lot of folks choose to begin "top-down", starting with a high-level overview of a problem of interest and then diving into the details that are relevant to that problem, by directly working with code and examples.
 
-Personally, I've found that the best way to learn Rust is to **do both at the same time**, i.e., switch between the bottom-up and top-down approaches when you're starting off. This is because Rust has a lot of  concepts that are hard for beginners, like traits, references, borrow-checking and lifetimes, but these concepts are ubiquitous throughout the language, in a way that you can't sequentially increase the complexity of your learning without getting stuck.
+Personally, I've found that the best way to learn Rust is to approach it from **both directions at the same time**, i.e., alternate between the bottom-up and top-down approaches when you're starting off. This is because Rust has a lot of concepts that are hard for beginners, like traits, references, borrowing and lifetimes, but these concepts are ubiquitous throughout the language, in a way that you can't sequentially increase the complexity of your learning without getting stuck.
 
 {{figure(src="rust-learning-modes.png" alt="Learning Rust by mixing top-down and bottom-up approaches")}}
 
@@ -87,11 +87,11 @@ I had a *lot* of fun this year reading blog posts, watching YouTube videos, list
 
 {{figure(src="rust-learning-materials.png", alt="Consuming Rust resources of a broad variety is the most effective way to learn")}}
 
-Keep alternating between the various forms of learning material, allowing your brain to process the information in different forms. Over time, you get hooked, and the pieces start to come together in your mind. There are so many great learning resources out there, in the form of books, videos, podcasts, blog posts, etc., which I list at the end of this article.
+Keep alternating between the various forms of learning material, allowing your brain to process the information in different forms. Over time, you get hooked, and the pieces start to come together in your mind. There are so many great learning resources out there, which I list at the end of this article.
 
 ### 2. Describe in words what makes Rust great for *you*
 
-Ask yourself the question: *Why am I interested in learning Rust?*. If the answer is "*because everyone else is talking about it*", or anything else related to FOMO, you're probably not going to get very far. The **key** is to convince yourself of what aspects of Rust resonate with **you**. Depending on your technical background and career interests, your answer could be vastly different from mine.
+Ask yourself the question: *Why am I interested in learning Rust?* If the answer is "*because everyone else is talking about it*", or anything else related to FOMO, you're probably not going to get very far. The **key** is to convince yourself of what aspects of Rust resonate with **you**. Depending on your technical background and career interests, your answer could be vastly different from mine.
 
 In my case, it was the exact reasons I listed [above](#why-i-need-more-than-python) and my frustrations with Python's type system (or lack thereof), that led me to discover Rust. Having consumed my fair share of podcasts, YouTube videos, blogs and books over the course of a year, I'd learned a great deal about Rust's expressive type system, strong emphasis on safety and what having good compiler checks can do in terms of catching bugs early on.
 
@@ -142,7 +142,7 @@ fn convert_unicode_to_ascii(s: &str) -> String {
 ```
 {% end %}
 
-As I move forward inch by inch, I'm finding that I'm slowly but surely able to write more idiomatic Rust code (with the compiler's help, of course), and I'm also learning a lot about the language's standard library and the amazing [crates.io](https://crates.io/) ecosystem.
+As you move forward inch by inch, you'll find you are slowly but surely writing more idiomatic Rust code (with the compiler's help, of course), while also learning about the language's standard library and the amazing [crates.io](https://crates.io/) ecosystem.
 
 ### 6. Spread the word
 
@@ -152,7 +152,7 @@ Once you have a handle on the core concepts, you'll find yourself naturally thin
 
 ## Rust isn't hard, it's just *different*
 
-No matter what language you're coming from (or, even if this is your first exposure to a programming language), the best way to approach Rust is to think of it as a language that's *different* from what you're used to, rather than a language that's hard in and of itself. It's a *big* and *feature-rich* language, whose core concepts can take time and effort to grasp, but there are plenty of resources out there to help you along the way.
+No matter what language you're coming from (or, even if this is your first exposure to a programming language), the best way to approach Rust is to think of it as a language that's *different* from what you're used to, rather than a language that's hard in and of itself. Rust is a big and feature-rich language whose core concepts can take time and effort to grasp, but there are plenty of resources out there to learn it over a sustained period.
 
 I'd argue that writing Rust *makes me a better Python programmer*, as I find myself thinking about my code's structure much more carefully than I would if I were haphazardly prototyping in a dynamically typed language. In Rust, you pay a cost upfront to write safer and correct code, which in turn makes you think about your code's structure and design from the get-go.
 
@@ -166,7 +166,7 @@ Is Rust the perfect language? No, but no language really is. There will most def
 
 For me, this is just the start of a multi-year journey learning Rust, and I'm excited to see what this ongoing wave of enthusiasm among new and established Rustaceans blossoms into over the coming years. After all, Rust is a language that's been designed to be around [for the next 40 years](https://www.youtube.com/watch?v=A3AdN7U24iU). Having come to Rust from Python for the *safety* and *reliability* that it offers, the speed/efficiency gains it offers are just the icing on the cake.
 
-It's very easy for one to feel impostor syndrome while learning Rust. Tim McNamara frames this the best: [*start small, and grow gradually*](https://www.youtube.com/watch?v=sDtQaO5_SOw&t=30s). When you're starting off, it's okay to write basic code that might be inefficient, as long as it works and achieves the intended goal. Chances are, your relatively naive Rust code will still be way faster than your Python code. 😀
+It's very easy for one to feel impostor syndrome while learning Rust. Tim McNamara frames this really well: [*start small, and grow gradually*](https://www.youtube.com/watch?v=sDtQaO5_SOw&t=30s). When you're starting off, it's **OK**** to write basic code that might be inefficient, as long as it works and achieves the intended goal. Chances are, your relatively naive Rust code will still be way faster than your Python code. 😀
 
 When do you call yourself a Rustacean? [Jon Gjengset's take](https://nostarch.com/blog/software-engineer-jon-gjengset-gets-nitty-gritty-rust) is: "You are a Rustacean from just before the first time you ask yourself whether you might be one".
 
