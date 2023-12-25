@@ -166,7 +166,7 @@ Is Rust the perfect language? No, but no language really is. There will most def
 
 For me, this is just the start of a multi-year journey learning Rust, and I'm excited to see what this ongoing wave of enthusiasm among new and established Rustaceans blossoms into over the coming years. After all, Rust is a language that's been designed to be around [for the next 40 years](https://www.youtube.com/watch?v=A3AdN7U24iU). Having come to Rust from Python for the *safety* and *reliability* that it offers, the speed/efficiency gains it offers are just the icing on the cake.
 
-It's very easy for one to feel impostor syndrome while learning Rust. Tim McNamara frames this really well: [*start small, and grow gradually*](https://www.youtube.com/watch?v=sDtQaO5_SOw&t=30s). When you're starting off, it's **OK**** to write basic code that might be inefficient, as long as it works and achieves the intended goal. Chances are, your relatively naive Rust code will still be way faster than your Python code. 😀
+It's very easy for one to feel impostor syndrome while learning Rust. Tim McNamara frames this really well: [*start small, and grow gradually*](https://www.youtube.com/watch?v=sDtQaO5_SOw&t=30s). When you're starting off, it's **OK** to write basic code that might be inefficient, as long as it works and achieves the intended goal. Chances are, your relatively naive Rust code will still be way faster than your Python code. 😀
 
 When do you call yourself a Rustacean? [Jon Gjengset's take](https://nostarch.com/blog/software-engineer-jon-gjengset-gets-nitty-gritty-rust) is: "You are a Rustacean from just before the first time you ask yourself whether you might be one".
 
