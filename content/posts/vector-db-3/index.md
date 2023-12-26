@@ -88,7 +88,7 @@ The PQ component can be broken down as per the diagram below. Each vector repres
 
 The second stage is similar to k-means clustering, where a "codebook" of values is learned by minimizing the distance between the original vector and the quantized vector centroids. By mapping a large, high-dimensional vector into smaller, lower-dimensional subvectors, it is only the codebook of quantized values that is stored, making the memory footprint far smaller.
 
-{{ figure(src="vector-db-pq.png" alt="Product quantization: Image inspired by <a href="https://www.pinecone.io/learn/series/faiss/product-quantization/">Pinecone blog</a>) }}
+{{ figure(src="vector-db-pq.png" alt="Product quantization: Image inspired by <a href='https://www.pinecone.io/learn/series/faiss/product-quantization/'>Pinecone blog</a>) }}
 
 IVF is then applied to the PQ vector space -- for each point in the space there is a corresponding region, called a [Voronoi cell](https://en.wikipedia.org/wiki/Voronoi_diagram), consisting of all points in the space closer to the source point (seed) than to any other. These seed points are used to create an inverted index that correlates each centroid with a list of vectors in the space.
 
