@@ -197,7 +197,7 @@ Regardless of which database you choose for your use case, we can all agree that
 
 [^7]: Product quantization: Compressing high-dimensional vectors by 97%, [Pinecone blog](https://www.pinecone.io/learn/series/faiss/product-quantization/)
 
-[^8]: ANN indexes, [LanceDB docs](https://lancedb.github.io/lancedb/ann_indexes/))
+[^8]: ANN indexes, [LanceDB docs](https://lancedb.github.io/lancedb/ann_indexes/)
 
 [^9]: Hierarchical Navigable Small-World graphs paper, [Malkov & Yashunin](https://arxiv.org/abs/1603.09320)
 
