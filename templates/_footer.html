@@ -1,7 +1,9 @@
 <footer>
+  {% if config.extra.footer_copyright is defined %}
   <div class="copyright">
     {{ config.extra.footer_copyright | trim | markdown | safe }}
   </div>
+  {% endif %}
   {% if config.extra.footer_credits %}
   <div class="credits">
     Powered by
