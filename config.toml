@@ -53,8 +53,8 @@ homepage_layout = "about"             # "about" | "list"
 
 sections = [
     { name = "blog", path = "/posts", is_external = false },
-    { name = "projects", path = "/projects", is_external = false },
     { name = "talks", path = "/talks", is_external = false },
+    { name = "projects", path = "/projects", is_external = false },
 ]
 blog_section_path = "/posts"
 

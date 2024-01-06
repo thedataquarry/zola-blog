@@ -7,7 +7,7 @@ lang = 'en'
 
 ## Hello! 👋🏽
 
-I'm an A.I. engineer with a passion for building intelligent, automated applications using a range of databases, tools and frameworks. My primary interests include database systems, Natural Language Processing (NLP), information extraction, machine learning and reasoning over knowledge graphs.
+I'm an A.I. engineer with a passion for building intelligent, automated applications using a range of databases, tools and frameworks. My primary interests include database systems, data modelling paradigms, Natural Language Processing (NLP), machine learning and reasoning over knowledge graphs.
 
 I'm based in Toronto 🇨🇦, and have previously lived in Vancouver 🇨🇦, London 🇬🇧 and Ann Arbor, Michigan 🇺🇸. I love writing technical content and digging into the internals of tools and frameworks, typically in Python and Rust. I'm also a big fan of open source software and open knowledge-sharing. If you like what you're reading in the [blog](./posts), consider [buying me a coffee](https://www.buymeacoffee.com/prrao87). 🫶🏼
 
