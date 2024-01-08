@@ -143,7 +143,7 @@ peppery undertones that pairs with steak or barbecued meat
 
 ### Serial benchmark
 
-The serial benchmark involves sequentially running up to 10,000 randomly sampled queries in a Python `for` loop. This isn't representative of a realistic use case in production, but is useful to understand the throughput potential of the underlying search engines for either system.
+The serial benchmark involves sequentially running up to 10,000 randomly sampled queries in a Python `for` loop. This isn't representative of a realistic use case in production, but is useful to understand the throughput potential when submitting a batch of queries sequentially.
 
 We first randomly sample the FTS and vector search queries, with repetition, to generate a list of queries to run sequentially.
 
@@ -180,14 +180,14 @@ python benchmark_serial.py --search fts --limit 10000
 
 ### Concurrent benchmark
 
-Concurrent requests are a much more realistic use case, for example, when a user interface sends multiple queries to the database at the same time. The concurrency approach (for now) is different between LanceDB and Elasticsearch, due to the fact that LanceDB (for now) exposes a synchronous client connection, whereas Elasticsearch implements an asynchronous, non-blocking client connection.
+Concurrent requests are a much more realistic use case, for example, when an application sends multiple query requests to the database at the same time. The concurrency approach is different between LanceDB and Elasticsearch, due to the fact that LanceDB is embedded and runs in-process, whereas Elasticsearch has a client/server architecture and implements an asynchronous, non-blocking connection via a REST API.
 
-Concurrent FTS and vector searches on Elasticsearch are performed by using its official async Python client, as per `app.py` [in the repo](https://github.com/prrao87/lancedb-study/blob/d4b89d85b13812a46b2b42cb4a0328a1aff3b952/elasticsearch/app.py).
+In Elasticsearch, concurrent FTS and vector searches are performed by using its official async (non-blocking) Python client, as per `app.py` [in the repo](https://github.com/prrao87/lancedb-study/blob/d4b89d85b13812a46b2b42cb4a0328a1aff3b952/elasticsearch/app.py).
 
-The `concurrent.futures.ThreadPoolExecutor` class is used in Python, allowing the user to run multi-threaded queries via a custom FastAPI endpoint. See the code for the FastAPI app that's built on top of LanceDB [here](https://github.com/prrao87/lancedb-study/blob/main/lancedb/app.py).
+To run queries concurrently LanceDB, a FastAPI app is built on top of the in-process database, and the `concurrent.futures.ThreadPoolExecutor` is used to allow the user to run multiple concurrent queries via the thread pool. See the code for the FastAPI app that's built on top of LanceDB [here](https://github.com/prrao87/lancedb-study/blob/main/lancedb/app.py).
 
-{% note(header="Note") %}
-The LanceDB multi-threaded connection is limited to run on 4 worker threads. It was observed that increasing the number of threads was detrimental to performance (see below sections) due to the overhead of context switching between the CPU-bound embedding generation and I/O-bound querying.
+{% warning() %}
+The LanceDB FastAPI app's thread pool is limited to 4 threads in this study. It's recommended to experiment with increasing the number of threads up to 32 to find the optimal number for your use case.
 {% end %}
 
 The FTS search takes in a FastAPI `Request` object and the search query, and returns a list of `SearchResult` objects, which are Pydantic models that contain specific fields that are validated prior to returning the response.
@@ -335,16 +335,14 @@ For vector search, it is clear LanceDB is faster than Elasticsearch in both seri
 It is, of course, possible to improve the throughput of Elasticsearch with more compute resources, a larger cluster, and careful tuning of its HNSW index settings, but that's just as true for the IVF-PQ settings in LanceDB. The difference is that LanceDB is likely to perform on par with or better than Elasticsearch, with far fewer resources on a single node.
 
 {% warning(header="Note") %}
-The surprising result in FTS is that LanceDB is only about 30% as fast as Elasticsearch in the concurrent FTS case, while being 1.2x faster in the serial case. The performance drop of LanceDB in the concurrent FTS case is likely due to the overhead of multi-threaded REST API calls, and not due to the underlying search engine, Tantivy. Elasticsearch implements a non-blocking async client, which is likely the reason for its superior performance in the concurrent FTS case.
+The surprising result in FTS is that LanceDB is only about 30% as fast as Elasticsearch in the concurrent FTS case, while being 1.2x faster in the serial case. The performance drop of LanceDB in the concurrent FTS case is likely due to the overhead of Python multi-threaded REST API calls, and not due to the underlying search engine, Tantivy, which is implemented in Rust. In addition, Elasticsearch implements an efficient non-blocking async client, which explains its good performance in either FTS case.
 {% end %}
 
-A deeper explanation for the less-than-desired multi-threaded performance of LanceDB/FastAPI is that the current version of LanceDB sits on top of Tantivy's Python client API, `tantivy-py`, and through this layer, there could be blocking operations occurring that are holding the GIL. This could potentially be addressed in a future version of Lance by directly connecting it to Tantivy's Rust API and performing FTS queries with true multi-threading at the Rust level.
-
-As mentioned before, increasing the number of concurrent worker threads in the FastAPI application is detrimental to performance, likely because the CPU-bound embedding generation and IO-bound query operations were competing for resources. This is something that can potentially be improved in the future by using an async LanceDB client that's more efficient at context-switching in such hybrid CPU-bound + IO-bound scenarios.
+As mentioned before, increasing the number of concurrent worker threads in the FastAPI application could improve FTS performance (up to a limit). Future LanceDB SDKs that support async requests could also prove to be more efficient at context-switching in such hybrid CPU-bound + IO-bound scenarios.
 
 ## Composable systems improve nonlinearly
 
-A key takeaway from this study (other than the obvious performance gains possible), is how composing multiple modular components leads to a **nonlinear improvement** in the performance of the overall system. That is, improvements at the lower levels of the stack can result in an rapid, outsized improvement in the upper level at which the database sits.
+The biggest finding from from this study (other than the possible performance gains), is how composing multiple modular components in an effective manner can lead to a *nonlinear improvement* in the performance of the overall system. That is, improvements at the lower levels of the stack can result in an rapid, outsized improvement in the upper level at which the database sits.
 
 As can be seen below, LanceDB is composed of the following key components of the Rust ecosystem (not counting foundation crates like `serde` for serialization/deserialization or `tokio` for async). The effects of each of these projects propagate up the stack to the Lance storage layer, and ultimately, the database itself.
 
