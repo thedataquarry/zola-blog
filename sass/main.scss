@@ -464,7 +464,7 @@ body.prose-page {
 
 .layout-list {
   .category {
-    font-size: 1.4em;
+    font-size: 1.3em;
     margin: 2em 15px 1em;
   }
 
@@ -473,6 +473,7 @@ body.prose-page {
   }
 
   .post {
+    font-size: 1.2em;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -480,7 +481,6 @@ body.prose-page {
     padding: 6px 15px;
     margin: 1px 0;
     border-radius: 2px;
-    font-size: 1.3em;
     text-decoration: none;
     color: var(--primary-color);
     -webkit-tap-highlight-color: transparent;
