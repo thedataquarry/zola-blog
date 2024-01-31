@@ -137,7 +137,7 @@ In this section, I'll list some of the key takeaways and the pros and cons of ea
 
 * __Pros__: Very mature database with a host of algorithms, due to its lengthy presence in the vector DB ecosystem. Offers [a **lot** of options](https://milvus.io/docs/index.md) for vector indexing and built from the ground up in Golang to be extremely scalable. As of 2023, it's the only major vendor to offer a [working DiskANN implementation](https://milvus.io/blog/2021-09-24-diskann.md), which is said to be the most efficient on-disk vector index.
 
-* __Cons__: To my eyes, Milvus seems to be a solution that throws the kitchen sink _and_ the refrigerator at the scalability problem -- it achieves a high degree of scalability through a combination of proxies, load balancers, message brokers, Kafka and Kubernetes, which makes the overall system really complex and resource-intensive. The client APIs (e.g., Python) are also not as readable or intuitive as newer databases like Weaviate and Qdrant, who tend to focus a lot more on developer experience.
+* __Cons__: To my eyes, Milvus seems to be a solution that throws the kitchen sink _and_ the refrigerator at the scalability problem -- it achieves a high degree of scalability through a combination of proxies, load balancers, message brokers, Kafka and Kubernetes[^7], which makes the overall system really complex and resource-intensive. The client APIs (e.g., Python) are also not as readable or intuitive as newer databases like Weaviate and Qdrant, who tend to focus a lot more on developer experience.
 
 * __My take__: It's clear that Milvus was built with the idea of massive scalability for streaming data to a vector index, and in many cases, when the size of the data isn't too large, Milvus can seem to be overkill. For more static and infrequent large-scale situations, alternatives like Qdrant or Weaviate may be cheaper and faster to get up and running in production.
 
@@ -149,7 +149,7 @@ In this section, I'll list some of the key takeaways and the pros and cons of ea
 
 * __Cons__: Unlike the other purpose-built vendors, Chroma is largely a Python/TypeScript wrapper around an existing OLAP database (Clickhouse), and an existing open source vector search implementation ([hnswlib](https://github.com/nmslib/hnswlib)). For now (as of June 2023), it doesn't implement its own storage layer.
 
-* __My take__: The vector DB market is rapidly evolving, and Chroma seems to be inclined[^7] to adopt a "wait and watch" philosophy, and are among the few vendors that are aiming to provide multiple hosting options: serverless/embedded, self-hosted (client-server) and a cloud-native distributed SaaS solution, with potentially both embedded and client-server mode. As per their road map[^4], Chroma's server implementation is in progress. Another interesting area of innovation that Chroma is bringing in is a means to quantify "query relevance", that is, how close is the returned result to the input user query. Visualizing the embedding space, which is also listed in their road map, is an area of innovation that could allow the database to be used for may applications other than search. From a long term perspective, however, we've never yet seen an embedded database architecture be successfully monetized in the vector search space, so its evolution (alongside LanceDB, described below) will be interesting to watch!!
+* __My take__: The vector DB market is rapidly evolving, and Chroma seems to be inclined[^8] to adopt a "wait and watch" philosophy, and are among the few vendors that are aiming to provide multiple hosting options: serverless/embedded, self-hosted (client-server) and a cloud-native distributed SaaS solution, with potentially both embedded and client-server mode. As per their road map[^4], Chroma's server implementation is in progress. Another interesting area of innovation that Chroma is bringing in is a means to quantify "query relevance", that is, how close is the returned result to the input user query. Visualizing the embedding space, which is also listed in their road map, is an area of innovation that could allow the database to be used for may applications other than search. From a long term perspective, however, we've never yet seen an embedded database architecture be successfully monetized in the vector search space, so its evolution (alongside LanceDB, described below) will be interesting to watch!!
 
 * __Official page__: [trychroma.com](https://www.trychroma.com/)
 
@@ -198,7 +198,7 @@ In this section, I'll list some of the key takeaways and the pros and cons of ea
 
 ## Conclusions: The trillion-scale problem
 
-It's hard to imagine any other time in history when any one kind of database has captured this much of the public's attention, not to mention the VC ecosystem. One key use case that vector database vendors (like Milvus[^8], Weaviate[^9]) are trying to solve is how to achieve trillion-scale vector search with the lowest latency possible. This is an incredibly difficult task, and with the amount of data coming via streams or batch processing these days, it makes sense that purpose-built vector databases that optimize for storage and querying performance under the hood are the most primed to break this barrier in the near future.
+It's hard to imagine any other time in history when any one kind of database has captured this much of the public's attention, not to mention the VC ecosystem. One key use case that vector database vendors (like Milvus[^9], Weaviate[^10]) are trying to solve is how to achieve trillion-scale vector search with the lowest latency possible. This is an incredibly difficult task, and with the amount of data coming via streams or batch processing these days, it makes sense that purpose-built vector databases that optimize for storage and querying performance under the hood are the most primed to break this barrier in the near future.
 
 I'll end this post with the observation that, historically in the database world, the most successful business model has been the tried-and-tested approach of open-sourcing the code upfront (so that a passionate community builds around the technology), followed by commercializing the tool through managed service or cloud offerings. Embedded databases are relatively new in this space, and it remains to be seen how successful they will be in monetizing their product and generating long-term revenue.
 
@@ -219,7 +219,7 @@ I hope you found this summary useful! In subsequent posts, I'll summarize the un
 As I keep learning new things from the community every day, I'll track any updates I make in this section. 😄
 
 - 2023-07-01: Corrected the programming language & location information for Vespa, per the helpful input from [@codycollier](https://github.com/codycollier)
-- 2023-07-02: Added more info on Chroma, based on [^4] and [^10]
+- 2023-07-02: Added more info on Chroma, based on [^4] and [^11]
 
 ---
 
@@ -235,10 +235,13 @@ As I keep learning new things from the community every day, I'll track any updat
 
 [^6]: DiskANN: Fast, Accurate, Billion-point Nearest Neighbor Search on a Single Node, [NeurIPS 2019](https://suhasjs.github.io/files/diskann_neurips19.pdf)
 
-[^7]: Chroma: Open source embedding database, [Software Engineering Daily Podcast](https://softwareengineeringdaily.com/2023/04/20/open-source-embedding-database/)
+[^7]: Not all vector databases are made equal, [Dmitry Kan](https://towardsdatascience.com/milvus-pinecone-vespa-weaviate-vald-gsi-what-unites-these-buzz-words-and-what-makes-each-9c65a3bd0696)
 
-[^8]:Milvus Was Built for Massive-Scale (Think Trillion) Vector Similarity Search, [Milvus blog](https://milvus.io/blog/Milvus-Was-Built-for-Massive-Scale-Think-Trillion-Vector-Similarity-Search.md)
+[^8]: Chroma: Open source embedding database, [Software Engineering Daily Podcast](https://softwareengineeringdaily.com/2023/04/20/open-source-embedding-database/)
 
-[^9]: ANN algorithms: Vamana vs. HNSW, [Weaviate blog](https://weaviate.io/blog/ann-algorithms-vamana-vs-hnsw#large-scale)
+[^9]:Milvus Was Built for Massive-Scale (Think Trillion) Vector Similarity Search, [Milvus blog](https://milvus.io/blog/Milvus-Was-Built-for-Massive-Scale-Think-Trillion-Vector-Similarity-Search.md)
 
-[^10]: Fireside Chat with Jeff Huber, co-founder of Chroma, [Data Driven NYC](https://www.youtube.com/watch?v=NI0faK90TP4)
+[^10]: ANN algorithms: Vamana vs. HNSW, [Weaviate blog](https://weaviate.io/blog/ann-algorithms-vamana-vs-hnsw#large-scale)
+
+[^11]: Fireside Chat with Jeff Huber, co-founder of Chroma, [Data Driven NYC](https://www.youtube.com/watch?v=NI0faK90TP4)
+
