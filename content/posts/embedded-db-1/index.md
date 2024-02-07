@@ -19,7 +19,7 @@ In the world of database systems, the client/server architecture has been by far
 
 Most databases that exist today are built using the client/server architecture, where the client is responsible for rendering the user/developer interface, and the server is responsible for storing and processing the data. It's not a stretch to say that the world has progressed a *long* way since the early days of the web. As computing power has grown exponentially, modern embedded databases are able to do a lot more, *with a lot less*.
 
-Although the idea of embedded databases is not new -- SQLite has been around since 2000 🤯 -- there have been numerous research breakthroughs in the last decade, making it possible for vendors to build fast, lightweight, and easy to use alternatives to established solutions like Postgres or MySQL, especially for the massive analytical and ML workloads we're seeing today.
+Although the idea of embedded databases is not new -- SQLite has been around since 2000! -- there have been numerous research breakthroughs in the last decade, making it possible for vendors to build fast, lightweight, and easy to use alternatives to established solutions like Postgres or MySQL, especially for the massive analytical and ML workloads we're seeing today.
 
 However, a lot of these enterprise solutions are designed for "big" data (whatever that terms means for your organization). But there's a whole ocean of use cases *in between* single-CPU, in-memory analytics and large-scale, distributed analytics. It's in this middle ground where embedded databases shine ✨, because they're designed to be lightweight, easy to use, and are extremely performant for analytics, from small-scale (a few million) to large-scale (billion-size) datasets.
 
@@ -31,21 +31,21 @@ Real-world data processing workloads can be broadly broken into two: **OLTP** (o
 
 Over the years, the client/server architecture has been a great fit for OLTP workloads, but has been less than ideal for OLAP workloads, mainly because their underlying storage is row-oriented. This has led to a host of OLAP data warehouses being built specifically to process heavy analytical workloads, such as Snowflake, Clickhouse and BigQuery, which are designed to use columnar storage.
 
-I'm focusing specifically on the following 3 solutions, because they're all open-source, and importantly, **they embrace unorthodoxy** at their core -- they do away with existing designs, and instead innovate by starting from a clean slate.
+I'm focusing specifically on the 3 solutions shown below, because they're all open-source, and importantly, **they embrace unorthodoxy** at their core -- they do away with existing designs, and instead innovate by starting from a clean slate.
 
 {{ figure(src="embedded-db-breakdown.png" alt="The unifying interface for modern data: Arrow" ) }}
 
-The bottom part of the image is particularly interesting: [Arrow](https://arrow.apache.org/), a language-agnostic development ecosystem for in-memory data, is the common denominator between all three of these databases, allowing data from one paradigm to relatively easily be transformed into another (despite the databases themselves being implemented in different languages). The Arrow format was designed from the ground up to be a columnar, fast and in-memory format for flat and hierarchical data, to be efficient for analytic operations on modern CPUs and GPUs.
+The bottom part of the image is particularly interesting: [Arrow](https://arrow.apache.org/), a language-agnostic development ecosystem for in-memory data, is the common denominator between all three of these databases, allowing data from one paradigm to relatively easily be transformed into another (despite the databases themselves implementing different data models). The Arrow format was designed from the ground up to be a columnar, fast and in-memory format for flat and hierarchical data, to be efficient for analytical operations on modern CPUs and GPUs.
 
 ### What is an embedded database?
 
-An embedded database is an **in-process** database management system that's tightly integrated with the application layer. The term "in-process" is important because the database compute runs within the same underlying process as the application (which could be written in any language, like Python, R, JavaScript, C++). In the case of RocksDB, an open-source embedded key-value database written in C++, the application it runs inside[^6] could *itself be another database*!
+An embedded database is an **in-process** database management system that's tightly integrated with the application layer. The term "in-process" is important because the database compute runs within the same underlying process as the application (which could be written in any language, like Python, R, JavaScript, C++). In the case of RocksDB, an open-source embedded key-value store written in C++, the application it runs inside[^6] could *itself be another database*!
 
-A key characteristic of embedded databases is that they clearly separate storage from compute -- data that's larger than memory can be stored and queried on-disk, allowing them to scale to nearly all sizes of data (100M+ data points).
+A key characteristic of embedded databases is how close the storage layer is to the application layer. Additionally, data that's larger than memory can be stored and queried on-disk, allowing them to scale to pretty huge amounts of data (TB) with relatively low query latencies and response times.
 
 {% note() %}
-In the database community, embedded databases are often referred to as *serverless* databases, because they do not require a client/server architecture (as is prevalent in most large-scale software systems). If you're looking at this from a cloud or microservices perspective, the term "serverless" can mean something different altogether, so I'll **not** be using the terms "embedded" and "serverless" interchangeably in this series on databases.
-{%end  %}
+In the database community, embedded databases are sometimes referred to as *serverless* databases, but they do not mean the same thing. In general, "embedded" refers to "in-process", and "serverless" refers to separation of storage and compute, so these terms are used in different contexts, especially to those coming from microservices backgrounds.
+{%end%}
 
 ### A breakdown of the landscape
 
@@ -53,13 +53,13 @@ The three databases we will focus on are but part of a larger landscape of embed
 
 {{ figure(src="embedded-db-landscape.png" alt="Embedded databases organized by data model paradigm" ) }}
 
-Key-value embedded data stores are quite popular, due to their speed and lightweight nature, allowing them to power a host of other applications/databases downstream. However, the key-value data model is quite simplistic, allowing for limited expressivity in data modelling. The other three data model paradigms -- relational, graph and vector -- are much more powerful and expressive, and are thus the focus of this series.
+Key-value embedded stores are quite popular, due to their speed and lightweight nature, allowing them to power a host of other applications/databases downstream. However, the key-value data model is quite simplistic, allowing for limited expressivity in data modelling. The other three data model paradigms -- relational, graph and vector -- are much more powerful and expressive, and are thus the focus of this series.
 
 ---
 
 ## DuckDB
 
-[DuckDB](https://duckdb.org/) is a high-performance embedded relational database system (RDBMS) that can be queried via a rich SQL dialect that's very similar to Postgres. Its core is written in C++, and it's designed to be fast, ACID-compliant, and easy to use. It's designed to support large-scale OLAP query workloads, which are typically characterized by complex, relatively long-running queries that process significant portions of the stored data -- for example, aggregations over entire tables, or joins between several large tables.
+[DuckDB](https://duckdb.org/) is a high-performance embedded, ACID-compliant relational database system (RDBMS) that can be queried via a rich SQL dialect that's very similar to Postgres. It's written in C++, and is designed to be fast and easy to use. It's designed to support large-scale OLAP query workloads, which are typically characterized by complex, relatively long-running queries that process significant portions of the stored data -- for example, aggregations over entire tables, or joins between several large tables.
 
 ### An interesting take on the "big data" narrative
 
@@ -166,10 +166,10 @@ In early 2023, DuckDB made significant strides on the monetization front, with i
 
 ### KùzuDB
 
-KùzuDB is still in its early days, but is the furthest ahead among graph DB vendors the quest to provide a scalable and easy-to-use embedded graph DB.
+KùzuDB appears to be the furthest ahead among graph DB vendors in the quest to provide a scalable and easy-to-use embeddable graph DBMS.
 
 * [Kùzu](https://kuzudb.com/) is a powerful, open-source, ACID-compliant graph database **ready for production**, with great support for the openCypher query language
-  * My ongoing experiments show it to be blazing fast 🔥, and it's able to handle large-scale graph queries with ease: a separate blog to come on this soon!
+  * My [experiments](../embedded-db-2) with it show it to be blazing fast in comparison to existing solutions, and it's able to handle large-scale graph queries using a familiar query language.
 * As they mention in their blog[^7], Kùzu is aiming to emulate in the graph database world what DuckDB has done in the SQL world, and gain widespread adoption through a sound core that's open-source and scalable
 * As the use cases for graph data structures & algorithms proliferate into ML/AI and LLM applications, my take is that an as-yet unannounced commercial offering from KùzuDB could be hugely valuable in building analytics tools powered by graphs
 
@@ -182,7 +182,6 @@ LanceDB has been making waves in the world of vector DBs, and although it's also
 * Auto re-indexing
 * Caching layer
 * Dashboard to more conveniently manage your data
-
 
 ## Conclusions
 
