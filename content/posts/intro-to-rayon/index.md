@@ -2,7 +2,7 @@
 title = "Speeding up data analysis with Rayon and Rust"
 description = "Rayon's makes data parallelism in Rust a breeze, and is blazing fast compared to Python multiprocessing. A simple walkthrough to get started."
 date = 2024-02-10
-draft = true
+draft = false
 
 [taxonomies]
 tags = ["rust"]
