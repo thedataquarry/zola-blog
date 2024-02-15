@@ -18,7 +18,7 @@ math = true
 
 Embedded databases have been experiencing something of a renaissance lately. In the [first post](../embedded-db-1/) in this series, I gave a detailed overview of this fascinating landscape, breaking it down into domains. This second post goes deeper into the graph domain -- in particular, [Kùzu](https://github.com/kuzudb/kuzu), a modern, lightweight, blazing fast embedded graph database written in C++ that's emerging as a powerful option for analytically querying very large graphs.
 
-Because it's hard to gauge performance in isolation, I felt it made sense to run a benchmark study with respect to [Neo4j](https://github.com/neo4j/neo4j), the most popular graph database in the market. The case study involves querying an artificial social network dataset that's hand-constructed to possess interesting graph structures, while also being large enough to measure performance in a meaningful manner.
+Because it's hard to gauge performance in isolation, this study compares Kùzu's performance to [Neo4j](https://github.com/neo4j/neo4j), the most well-known graph database in the market. The study involves querying an artificial social network dataset that's hand-constructed to possess interesting graph structures, while also being large enough to measure performance in a meaningful manner.
 
 {% warning(header="Note") %}
 The aim of this post is **NOT** to state that one database is better or worse than the other. Please take this as a *purely informative exercise*, and come to your own conclusions by testing out such a workflow on your own data.
@@ -372,7 +372,8 @@ Query | Neo4j (sec) | Kùzu (sec) | Speedup factor
 :---: | ---: | ---: | :---:
 8 | 3.4529 | 0.0191212 | 180.5
 
-This is interesting! Because the number of paths explode in complexity when it comes to multi-hop traversals, the speedup factor for Kùzu is *much* higher than the other queries, at **~180x**. This is due to the fact that Kùzu implements factorized query execution, which we will explore more in the discussion section.
+This is interesting! Because the number of paths explode in complexity when it comes to multi-hop traversals, the speedup factor for Kùzu is higher than for the other queries.
+This is mainly due to the fact that Kùzu implements factorized query execution, which we will explore more in the [discussions](#vectorized-execution).
 
 #### Query 9
 
@@ -402,19 +403,19 @@ Query | Neo4j (sec) | Kùzu (sec) | Speedup factor
 :---: | ---: | ---: | :---:
 9 | 4.2707 | 0.0226162 | 188.7
 
-As can be seen, the speedup is *even greater* than the previous query, at **~188x**, because filtering on node properties for paths that explode in complexity can incur a significant overhead in large graphs.
+As can be seen, the speedup is even greater than the previous query, because filtering on node properties for paths that explode in complexity can incur a significant overhead in large graphs.
 
-## Why was Kùzu _that_ much faster than Neo4j?
+## Why was Kùzu faster than Neo4j?
 
 It's worth digging a bit deeper into some of the key innovations in Kùzu that allow it to achieve this level of blazing fast 🔥 performance. To start with, let's summarize the query benchmark results -- the numbers next to each bar represent the speedup factors of Kùzu over Neo4j for each query.
 
-{{ figure(src="kuzudb-neo4j-query-perf-multi-threaded.png" alt="Kùzu's <a href='https://github.com/prrao87/kuzudb-study'>speedup</a> over Neo4j across 9 queries while running freely on multiple threads 🔥") }}
+{{ figure(src="kuzudb-neo4j-query-perf-multi-threaded.png" alt="Kùzu's <a href='https://github.com/prrao87/kuzudb-study'>speedup</a> over Neo4j over 9 distinct queries<br/><b>Note:</b> more recent versions of either DB may show different numbers)") }}
 
 There are a multitude of reasons why Kùzu is faster than Neo4j in all queries, and they can be a bit tricky to tease apart. Let's go through them one by one.
 
 #### Vectorized execution
 
-Kùzu executes queries in a vectorized fashion, enabled by the fact that data is stored natively in a column-oriented manner and accessed in batches. This is a similar approach as used by numerous other OLAP DBMSs such as DuckDB[^3] and ClickHouse[^4]. In modern hardware, column-oriented storage allows better cache utilization, while also allowing CPU optimizations that take advantage of SIMD, a type of parallel processing that performs the same operation on multiple data points via a single instruction.
+Kùzu executes queries in a vectorized fashion, enabled by the fact that data is stored natively in a column-oriented manner and accessed in batches. This is a similar approach as used by numerous other OLAP DBMSs such as DuckDB[^3] and ClickHouse[^4]. In modern hardware, column-oriented storage allows more cache locality, while also allowing CPU optimizations that take advantage of SIMD, a type of parallel processing that performs the same operation on multiple data points via a single instruction.
 
 #### Multi-threaded execution
 
@@ -452,11 +453,11 @@ As can be seen, the initial flat representation in this simple example had $2 \t
 
 I hope this post made it clear why Kùzu is such an exciting graph database. Its embedded nature makes it extremely easy to integrate with existing data workflows, with minimal infrastructure setup. Most importantly, it aims to scale to very large graphs via its key innovations in query processing and performance, which is the main bottleneck in graph analytics today. Another key advantage of embedded databases like Kùzu is the additional reduction in latency due to the fact that queries run within the application layer itself, eliminating the serialization/deserialization overhead of passing blobs of data from a remote server to the application instance.
 
-Even though Kùzu is currently designed to run on a single node only, it follows the DuckDB philosophy of doing the **most** work possible while utilizing multiple threads and as much memory as is available, so it's possible to get a lot more done than one might imagine on a single machine. This is a very different approach from Neo4j's approach to scalability, which uses a "fabric" architecture, requiring far more complex infrastructure, not to mention that it's a lot more expensive to run.
+Even though Kùzu is designed to run in-process on a single node, it follows the DuckDB philosophy of doing the most work possible while utilizing multiple threads and as much memory as is available, so it's possible to get a lot more done than one might imagine on a single node. This is a very different approach from Neo4j's approach to scalability, which uses a "fabric" architecture, requiring far more complex infrastructure, not to mention that it's a lot more expensive to run.
 
 If you've read along this far, you may be wondering, how large of a graph can one analyze in Kùzu? Based on my conversations with the Kùzu team over the last several months, it's amply clear that Kùzu can scale to graphs that contain hundreds of millions of nodes and billions of edges. In fact, Kùzu is regularly tested on the [LDBC-100](https://ldbcouncil.org/benchmarks/snb/) graph benchmark, i.e., the 100 Gb variant of this dataset that contains ~280M nodes and 1.7B edges.
 
-I have no doubts that I will be pushing for Kùzu's use in OLAP-querying large graphs in production, especially for datasets containing many-to-many relationships and a large number of cliques/cycles. The added bonus is that it's a lot easier for graph data scientists and machine learning practitioners to connect their Kùzu graph to ML libraries like Pytorch Geometric (all it takes is `pip install kuzu`, without any added infrastructure), so there's scope for loads more interesting work there!
+Kùzu's ability to perform OLAP-querying on large graphs makes a lot of sense in production, especially for datasets containing many-to-many relationships and a large number of cliques/cycles. The added bonus is that it's a lot easier for graph data scientists and machine learning practitioners to connect their Kùzu graph to ML libraries like Pytorch Geometric (all it takes is `pip install kuzu`, without any added infrastructure).
 
 Thanks for reading this far, and consider going to Kuzu's [GitHub repo](https://github.com/kuzudb/kuzu), giving them a star ⭐️ and showing them some ❤️ on [Slack](#additional-resources).
 
@@ -479,6 +480,6 @@ All the code required to reproduce the results shown in this case study is avail
 
 [^4]: Why is ClickHouse so fast? [ClickHouse FAQ](https://clickhouse.com/docs/zh/faq/general/why-clickhouse-is-so-fast)
 
-[^5]: _Morsel-Driven Parallelism_, [Leis et al.](https://dl.acm.org/doi/10.1145/2588555.2610507)
+[^5]: Morsel-Driven Parallelism, [Leis et al.](https://dl.acm.org/doi/10.1145/2588555.2610507)
 
 [^6]: Why graph DBMSs need new join algorithms, [Kùzu blog](https://kuzudb.com/docusaurus/blog/wcoj)
