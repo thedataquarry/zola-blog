@@ -31,7 +31,7 @@ Rayon is a very powerful and flexible framework, and this post only scratches th
 can do. If you're coming from Python, I hope this walkthrough will inspire you to explore Rayon, and
 the larger Rust ecosystem, much further. 🚀
 
-{% note(header="Note") %}
+{% warning(header="Note") %}
 In practice, the interop between Python and Rust is greatly enhanced by [PyO3](https://github.com/PyO3/pyo3), a
 framework that enables you to call Rust bindings from your Python code. This approach is heavily used
 by popular libraries like Pydantic, Polars and many others. Unifying Python and
@@ -407,9 +407,9 @@ The Python and Rust implementations were run on the full dataset of 143,000 reco
 to see how the performance scales to realistic sizes of data. The results are
 shown in the table below.
 
-numRecords | Python | Rust | Speedup factor
+Records | Python (sec) | Rust (sec) | Speedup factor
 --- | --- | --- | ---
-143,000 | 13.5 sec | 3.4 sec | **4x**
+143,000 | 13.5 | 3.4 | **4x**
 
 As mentioned at the start of this post, the Rust code using Rayon is about 4x faster than the Python code. This
 speedup would likely increase as the number of records increases. The difference
@@ -551,9 +551,9 @@ giving an initial sense of what's in the data.
 ## Conclusions
 
 In my view as a developer, Rayon's design offers a **perfect** level of abstraction for data parallelism.
-There's barely any boilerplate, and the Rust implementation of the code is 4x faster than the Python one.
-The Rust implementation has around 10% fewer lines of code than the Python one, while also being more readable and expressive.
-Although Rust was expected to be faster all along, it normally has a reputation for being
+There's barely any boilerplate, the Rust implementation is multiple times faster than Python
+and has around 10% fewer lines of code, while also being more readable and expressive.
+Although Rust was expected to be faster than Python all along, it normally has a reputation for being
 more complex and verbose than Python. When parallelism is involved, however, the opposite is true,
 thanks to Rayon.
 
@@ -566,7 +566,7 @@ While this post clearly separated Python and Rust into distinct workflows, it's 
 
 ## Code
 
-The code for the Python and Rust implementations is [here](https://github.com/thedataquarry/rustinpieces/tree/main/src/parallelism).
+The code for the Python and Rust implementations is available [here](https://github.com/thedataquarry/rustinpieces/tree/main/src/parallelism).
 It's part of a larger project called [Rust in Pieces](https://github.com/thedataquarry/rustinpieces),
 in which I'm collaborating with [Paul Sanders](https://github.com/sanders41) to compare Python
 and Rust for data processing tasks. If you found this post interesting, consider giving the GitHub repo a star ⭐️ and follow along!
