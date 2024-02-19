@@ -106,15 +106,19 @@ Because relational database systems are the primary means through which companie
 
 ### What is DataFusion?
 
-In 2018, Andy Grove started off with the question, "What if Spark was written from the ground up in Rust"? In his [blog post](https://andygrove.io/2018/01/rust-is-for-big-data/), Grove mentions how Rust was uniquely suited to some of the large-scale distributed computing challenges that Spark set out to solve. The original Apache Spark project depended on the Java Virtual Machine (JVM), which suffered from numerous performance issues due to Java serialization, and Spark in general was notoriously hard to debug, with exceptionally long stack traces that would confound most developers. DataFusion, with the foundation layer of the Arrow specification, is able to address a lot of these issues, implementing a scalable, single-process SQL query engine for fast and efficient execution on multiple threads. An example is [InfluxDB](https://github.com/influxdata/influxdb), a time-series database written in Golang, but which makes heavy use of DataFusion as its query engine.
+In the 2018 blog post titled ["What if Spark was written from the ground up in Rust"](https://andygrove.io/2018/01/rust-is-for-big-data/), Andy Grove mentioned how Rust was uniquely suited to some of the large-scale distributed computing challenges that Spark set out to solve. The original Apache Spark project depended on the Java Virtual Machine (JVM), which suffered from numerous performance issues due to Java serialization, and Spark in general was notoriously hard to debug, with exceptionally long stack traces that would confound most developers.
+
+DataFusion, with the foundation layer of the Arrow specification, is able to address a lot of these issues, implementing a scalable, single-process SQL query engine for fast and efficient execution on multiple threads. An example is [InfluxDB](https://github.com/influxdata/influxdb), a time-series database that makes heavy use of DataFusion as its query engine, and has recently been re-implemented from the ground up in Rust (see the `influxdb_iox` [repo](https://github.com/metrico/influxdb_iox)).
 
 {{ youtube(id="Rii1VTn3seQ", class="youtube") }}
 
+DataFusion has evolved into a much [larger scale project](https://github.com/apache/arrow-datafusion), and is being maintained by a community of developers as part of the Apache Software Foundation. It's defined as "a very fast, extensible query engine for building high-quality data-centric systems in Rust, using the Apache Arrow in-memory format". Offering both SQL and Dataframe APIs, excellent performance, built-in support for CSV, Parquet, JSON, and Avro, along with extensive customization, it's no wonder that it's being used as the foundation of numerous other databases and compute platforms.
+
 ### Ballista 🏹
 
-Ballista, also initially written by Andy Grove, is a distributed SQL query engine designed solely to scale up DataFusion (which was written for a single process) to exploit distributed computing. [As mentioned on GitHub](https://github.com/apache/arrow-ballista), it implements a similar design to Apache Spark, but is written fully in Rust, and, also unlike the original Spark that used the JVM, Ballista uses the Arrow columnar format at its foundation, allowing for much more efficient data compression and parallelization. And most importantly, like the underlying Arrow and DataFusion projects, language agnosticity is at the heart of Ballista, so that numerous other programming language interfaces can be built on top of the base query engine.
+Ballista, initially conceived by Andy Grove, is a distributed SQL query engine designed solely to scale up DataFusion (which was written for a single process) to exploit distributed computing. [As mentioned on GitHub](https://github.com/apache/arrow-ballista), it implements a similar design to Apache Spark, but is written fully in Rust, and, also unlike the original Spark that used the JVM, Ballista uses the Arrow columnar format at its foundation, allowing for much more efficient data compression and parallelization. And most importantly, like the underlying Arrow and DataFusion projects, language agnosticity is at the heart of Ballista, so that numerous other programming language interfaces can be built on top of the base query engine.
 
-By the end of 2022, all of the projects (Arrow's Rust implementation, DataFusion and Ballista) were donated to the Apache Software Foundation, and the overarching goals of this suit of projects are to __rebuild Spark from the ground up in Rust__, with performance, safety, memory footprint & scalability in mind. If you're interested, the following video explains the Ballista architecture and vision in more detail.
+By the end of 2022, all of the projects (Arrow's Rust implementation, DataFusion and Ballista) were donated to the Apache Software Foundation, and the overarching goals of this suit of projects are to rebuild something along the lines of Spark from the ground up in Rust, with performance, safety, memory footprint & scalability in mind. The following video explains the Ballista architecture and vision in more detail.
 
 {{ youtube(id="ZZHQaOap9pQ", class="youtube") }}
 
@@ -122,7 +126,7 @@ By the end of 2022, all of the projects (Arrow's Rust implementation, DataFusion
 
 A blog post on Python and data engineering isn't complete without mentioning the data validation library, Pydantic. Because data cleansing and type validation are repetitive tasks that are run millions or billions of times during typical ETL jobs, running these using a performance-driven language like Rust can have huge consequences in terms of carbon emissions long-term.
 
-In July 2023, Pydantic v2 was released, and as I describe in [my other post on Pydantic](../why-pydantic-v2-matters/), because the new version is written in Rust, it's blazing fast 🔥. Depending on your use case, Pydantic v2 can be anywhere from 5x-10x faster than v1, purely on the basis of its underlying Rust bindings.
+In July 2023, Pydantic v2 was released, and as I describe in [my other post on Pydantic](../why-pydantic-v2-matters/), because the new version is written in Rust, it's blazing fast 🔥. Depending on your use case and how you write your code, Pydantic v2 can be up to 12x faster than v1, due to optimizations and funtionalities implemented at the lower levels in Rust.
 
 ## Delta Lake
 
@@ -159,7 +163,7 @@ Between 2018-2022, multiple key milestones have been passed in the Rust crate ec
   * [LanceDB](https://github.com/lancedb/lancedb) (multi-modal vector search on an embedded DB with a serverless architecture)
 * Transform data into Arrow tables and move it between your local machine, a database or a data lake (which may be written in entirely other languages like Golang or C++)
 
-Now, imagine the power of a future Rust-powered Spark (whatever it will be called) built on DataFusion + Ballista, and being able to seamlessly switch between running your analysis on a single core on your local machine, or in a distributed fashion on a huge cluster. The thought of that (and never having to debug a JVM stack trace again) will make even the most seasoned data scientist or engineer dance with joy! 🕺💃
+Now, imagine the power of a future Rust-powered Spark (whatever it ends up looking like) built on DataFusion + Ballista, and being able to seamlessly switch between running your analysis on a single core on your local machine, or in a distributed fashion on a huge cluster. The thought of that (and never having to debug a JVM stack trace again) will make even the most seasoned data scientist or engineer dance with joy! 🕺💃
 
 As Will Jones, maintainer of the `delta-rs` and `lance` packages, [says](https://www.datawill.io/posts/pandas-arrow-rust/):
 
