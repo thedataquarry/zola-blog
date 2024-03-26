@@ -21,7 +21,7 @@ Most databases that exist today are built using the client/server architecture, 
 
 Although the idea of embedded databases is not new -- SQLite has been around since 2000! -- there have been numerous research breakthroughs in the last decade, making it possible for vendors to build fast, lightweight, and easy to use alternatives to established solutions like Postgres or MySQL, especially for the massive analytical and ML workloads we're seeing today.
 
-However, a lot of these enterprise solutions are designed for "big" data (whatever that terms means for your organization). But there's a whole ocean of use cases *in between* single-CPU, in-memory analytics and large-scale, distributed analytics. It's in this middle ground where embedded databases shine ✨, because they're designed to be lightweight, easy to use, and are extremely performant for analytics, from small-scale (a few million) to large-scale (billion-size) datasets.
+However, a lot of these enterprise solutions are designed for "big" data (whatever that means for your organization). But there's a whole ocean of use cases *in between* single-CPU, in-memory analytics and large-scale, distributed analytics. It's in this middle ground where embedded databases shine ✨, because they're designed to be lightweight, easy to use, and are extremely performant for analytics, from small-scale (a few million) to large-scale (billion-size) datasets.
 
 The aim of this series is to first gain a birds-eye view of the embedded database landscape, and how their interplay with Apache Arrow ecosystem is allowing for greater flexibility in data modelling than was possible before. From an OLAP perspective, three particular vendors are really exciting: **DuckDB** in the relational world, **KùzuDB** for graphs, and **LanceDB** for vectors.
 
@@ -150,13 +150,11 @@ The million-dollar question now is how commercially successful embedded database
 1. Gain a sizeable user community that advocates for its use
 1. Offer a managed cloud service that builds on top of the open-source version, with added convenience features -- from a pricing perspective, it would be essential that the cost is on par with (or lower than) tried-and-tested client/server databases
 
-{% tip(header="Note") %}
 One can only speculate, and **time** will tell how successful the various monetization strategies of embedded databases will be. My personal take is that there is already ample opportunity in both small and large organizations to use embedded databases for a wide variety of use cases, and the three vendors I've mentioned in this post, in my view, seem the best-positioned in their domains to be 💰 commercially successful in the long run.
-{% end %}
 
 ### DuckDB + MotherDuck
 
-In early 2023, DuckDB made significant strides on the monetization front, with its [MotherDuck](https://motherduck.com/company/) commercial cloud offering (currently in beta). It offers the following convenience features on top of its open-source offering[^4], designed specifically for serverless deployment on the cloud.
+In early 2023, DuckDB made a significant announcement related to its monetization strategy, with its [MotherDuck](https://motherduck.com/company/) commercial entity spin-off entity. MotherDuck offers the following convenience features on top of open-source offering DuckDB[^4], designed specifically for serverless operation on the cloud.
 
 * Convenient persistent storage via a managed service
 * Hybrid execution mode, allowing seamlessly combining querying from in-memory, on-disk, or on-cloud, in a fully distributed fashion
@@ -166,7 +164,7 @@ In early 2023, DuckDB made significant strides on the monetization front, with i
 
 ### KùzuDB
 
-KùzuDB appears to be the furthest ahead among graph DB vendors in the quest to provide a scalable and easy-to-use embeddable graph DBMS.
+Kùzu is the furthest ahead among graph DB vendors in the quest to provide an easy-to-use and scalable embeddable graph DBMS.
 
 * [Kùzu](https://kuzudb.com/) is a powerful, open-source, ACID-compliant graph database **ready for production**, with great support for the openCypher query language
   * My [experiments](../embedded-db-2) with it show it to be blazing fast in comparison to existing solutions, and it's able to handle large-scale graph queries using a familiar query language.
@@ -175,7 +173,7 @@ KùzuDB appears to be the furthest ahead among graph DB vendors in the quest to 
 
 ### LanceDB + LanceDB Cloud
 
-LanceDB has been making waves in the world of vector DBs, and although it's also still in its early days, it's differentiating itself from its competitors by offering innovative vector querying and search directly on cloud storage[^8], in a similar way to DuckDB. Due to the unique nature of [Lance](https://github.com/lancedb/lance), a new, columnar data format optimized for vector compute (and on top of which LanceDB is built), the management of vector storage and versioning on the cloud is an interesting area that LanceDB is looking to revolutionize. Some of the convenience features on [LanceDB Cloud](https://lancedb.com/), currently in beta, are described below.
+LanceDB has been making waves in the world of vector DBs, and it's fast differentiated itself from its competitors by offering innovative disk-based vector indexes and search capabilities directly on cloud storage[^8]. Due to the unique nature of [Lance](https://github.com/lancedb/lance), a new, columnar data format optimized for vector compute (and on top of which LanceDB is built), the management of vector storage and versioning on the cloud is a fascinating area that LanceDB is looking poised to revolutionize. Some of the convenience features on [LanceDB Cloud](https://lancedb.com/) are described below.
 
 * Managed service to store and version Lance datasets in the cloud
 * Distributed computing workloads via a managed service
@@ -185,11 +183,16 @@ LanceDB has been making waves in the world of vector DBs, and although it's also
 
 ## Conclusions
 
-This post gave a rather detailed (and in my view, necessary) overview of the embedded DB landscape, specifically focusing on solutions in the relational, graph and vector paradigms. Although each of these tools is built in a different language (C++ or Rust) and caters to a different data model, the power of the underlying Arrow format effectively unifies these otherwise distinct paradigms, allowing for seamless data transfer and a LOT more flexibility for the developer in data modelling in complex use cases.
+This post gave a rather detailed (and in my view, necessary) overview of the embedded DB landscape, specifically focusing on solutions in the relational, graph and vector paradigms. Although each of these tools is built in a different language (C++ or Rust) and caters to different data models, the interoperability features baked into underlying Arrow format effectively unify these otherwise distinct paradigms, allowing for seamless data transfer and a LOT more flexibility for complex use cases.
 
-I believe that these major developments will make embedded databases much more popular among data scientists and ML practitioners in the coming years. As a developer who's interested in one and all modelling paradigms, I can only speculate on the commercial angle of these solutions, and my primary interest is in using them, and documenting their performance at a technical capacity. In the upcoming posts in this series, I'll go deeper into examples with code on each of these solutions.
+I'm firmly of the belief that these major developments will make embedded databases far more popular and accessible to data scientists and ML practitioners in the coming years. As a developer who's interested in one and all modelling paradigms, I can only speculate on the commercial angle of these solutions. In the upcoming posts in this series, I'll go deeper into examples with code on each of these solutions.
 
 Onward and upward! 🚀
+
+Other posts in this series:
+
+- [Embedded databases (2): KùzuDB, an extremely fast OLAP graph database](../embedded-db-2)
+- [Embedded databases (3): LanceDB and the modular data stack](../embedded-db-3)
 
 ---
 
