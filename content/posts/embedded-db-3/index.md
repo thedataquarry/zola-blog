@@ -69,10 +69,10 @@ Based on the components listed above, we can see how LanceDB is a byproduct of m
 
 ## Embedded vs. serverless
 
-It is common to see the terms "embedded" and "serverless" used interchangeably, but for a database, they are not the same architecturally. LanceDB is available to users in two flavours:
+It's rather common to see the terms "embedded" and "serverless" used interchangeably, but for a database, they are not the same architecturally. LanceDB is available to users in more than one flavour:
 
 * Open source LanceDB is *embedded*, meaning that the storage layer and the application layer are tightly coupled, and are typically on the same instance/machine
-* LanceDB Cloud (a commercial product) is *serverless*, meaning that storage and compute are clearly separated. This is done by connecting the application client to a remote database via a network  connection, with the application layer and storage layer being scaled independently of one another.
+* LanceDB Cloud & LanceDB Enterprise (both commercial products) are *serverless*, meaning that storage and compute are clearly separated. This is done by connecting the application client to a remote database via a network connection, with the application layer and storage layer being scaled independently of one another.
 
 ## Benchmark: Full-text and vector search
 
