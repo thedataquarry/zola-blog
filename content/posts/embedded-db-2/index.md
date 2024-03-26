@@ -461,6 +461,11 @@ Kùzu's ability to perform OLAP-querying on large graphs makes a lot of sense in
 
 Thanks for reading this far, and consider going to Kuzu's [GitHub repo](https://github.com/kuzudb/kuzu), giving them a star ⭐️ and showing them some ❤️ on [Slack](#additional-resources).
 
+Other posts in this series:
+
+- [Embedded databases (1): The harmony of DuckDB, KùzuDB and LanceDB](../embedded-db-1)
+- [Embedded databases (3): LanceDB and the modular data stack](../embedded-db-3)
+
 ## Code
 
 All the code required to reproduce the results shown in this case study is available [on GitHub](https://github.com/prrao87/kuzudb-study). I'd love to hear from anybody who uses a similar approach on their own data for even larger graphs, so do reach out if you've had success!

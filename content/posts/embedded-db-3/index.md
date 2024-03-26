@@ -363,6 +363,11 @@ As described in this post, LanceDB is an exciting addition to the vector databas
 
 I highly recommend giving out LanceDB a try on your own data, and to keep an eye on its development in the coming months. Give both [Lance](https://github.com/lancedb/lance) and [LanceDB](https://github.com/lancedb/lancedb) a ⭐️ on GitHub and show them some ❤️ on [Discord](https://discord.gg/zMM32dvNtd).
 
+Other posts in this series:
+
+- [Embedded databases (1): The harmony of DuckDB, KùzuDB and LanceDB](../embedded-db-1)
+- [Embedded databases (2): KùzuDB, an extremely fast OLAP graph database](../embedded-db-2)
+
 ## Code
 
 All the code required to reproduce the results from the benchmark is available [here](https://github.com/prrao87/lancedb-study).
