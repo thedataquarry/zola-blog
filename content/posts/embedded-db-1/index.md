@@ -95,13 +95,13 @@ Because DuckDB **natively** supports a lot of these formats, it's able to perfor
 
 ## KùzuDB
 
-[KùzuDB](https://github.com/kuzudb/kuzu) is an open-source graph database management system (GDBMS), built for query speed and scalability, and is implemented in C++. Its origins and motivations are quite similar to DuckDB on two counts, in that it utilizes an embedded architecture, and that it came from an academic environment. KùzuDB is being actively developed at the University of Waterloo 🇨🇦, and builds on top of decades of research in the implementation and architectural design of graph database management systems. It utilizes the [openCypher](https://opencypher.org/) standard to implement a fully-functional, performant graph query language that allows users to access the full expressive power of graphs via the labelled property graph model.
+[KùzuDB](https://github.com/kuzudb/kuzu) is an open-source graph database management system (GDBMS) built for query speed and scalability, and is implemented in C++. Its origins and motivations are quite similar to DuckDB on two counts, in that it utilizes an embedded architecture, and that it came from an academic environment. KùzuDB comes from years of research at University of Waterloo 🇨🇦, and applies several modern techniques for storage and query processing of graph-like data. It implements the Cypher query language, based on the [openCypher](https://opencypher.org/) standard, allowing developers to unlock the full expressive power of graphs via a property graph data model (or [RDF](https://docs.kuzudb.com/rdf-graphs/), if required).
 
-Despite the term "graph", a graph database, at its core, expresses a relational model. The main difference in the internals of a GDBMS and a typical relational system is that the GDBMS is optimized for storing and querying specialized data structures that represent a graph data model, making it highly suited to datasets with a high degree of connectivity like social networks, recommendation engines, fraud detection, and many others.
+A graph database, at its deepest core, despite its name, expresses a relational model. The main difference in the internals of a GDBMS and a typical relational system is that the GDBMS is optimized for storing and querying specialized data structures and join algorithms that are suited to modelling datasets with a high degree of connectivity, such social networks, recommendation engines, fraud detection, and many others.
 
 ### Key features of KùzuDB
 
-KùzuDB, being an embedded database built from scratch, incorporates some cutting-edge features straight out of the world of academic database research. A few of their key features for blazing fast graph query performance are listed below, as adapted from their excellent blog post, titled "*What every competent GDBMS should do"*[^7].
+KùzuDB, being an embedded database, incorporates cutting-edge features straight out of the world of academic database research. A few of their key features for blazing fast graph query performance are listed below, as adapted from their excellent blog post, titled "*What every competent GDBMS should do"*[^7].
 
 * **Vectorized query processing**: A graph database exploits the underlying relational structure of the data and stores it via an efficient columnar format in blocks, so that queries and aggregations can be processed in a vectorized fashion, fully exploiting the power of multiple threads on modern CPUs.
 
@@ -206,9 +206,9 @@ Other posts in this series:
 
 [^5]: Why we built Rill with DuckDB, [Rill blog](https://www.rilldata.com/blog/why-we-built-rill-with-duckdb)
 
-[^7]: What every competent graph database management system should do, [KùzuDB blog](https://kuzudb.com/docusaurus/blog/what-every-gdbms-should-do-and-vision/)
+[^7]: What every competent graph database management system should do, [KùzuDB blog](https://blog.kuzudb.com/post/what-every-gdbms-should-do-and-vision/)
 
-[^9]: Benchmarking random access in Lance, [LanceDB blog](https://blog.eto.ai/benchmarking-random-access-in-lance-ed690757a826)
+[^9]: Benchmarking random access in Lance, [LanceDB blog](https://blog.lancedb.com/benchmarking-random-access-in-lance/)
 
 [^8]: *S3 backed full-text search with Tantivy* by Rob Meng, [LanceDB blog](https://blog.lancedb.com/s3-backed-full-text-search-with-tantivy-part-1-ac653017068b)
 
