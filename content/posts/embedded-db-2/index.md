@@ -409,7 +409,7 @@ As can be seen, the speedup is even greater than the previous query, because fil
 
 It's worth digging a bit deeper into some of the key innovations in Kùzu that allow it to achieve this level of blazing fast 🔥 performance. To start with, let's summarize the query benchmark results -- the numbers next to each bar represent the speedup factors of Kùzu over Neo4j for each query.
 
-{{ figure(src="kuzudb-neo4j-query-perf-multi-threaded.png" alt="Kùzu's <a href='https://github.com/prrao87/kuzudb-study'>speedup</a> over Neo4j over 9 distinct queries<br/><b>Note:</b> more recent versions of either DB may show different numbers)") }}
+{{ figure(src="kuzudb-neo4j-query-perf-multi-threaded.png" alt="Kùzu's <a href='https://github.com/prrao87/kuzudb-study'>speedup</a> over Neo4j over 9 distinct queries<br/><b>Note:</b> more recent versions of either DB may show different numbers") }}
 
 There are a multitude of reasons why Kùzu is faster than Neo4j in all queries, and they can be a bit tricky to tease apart. Let's go through them one by one.
 
@@ -455,11 +455,11 @@ I hope this post made it clear why Kùzu is such an exciting graph database. Its
 
 Even though Kùzu is designed to run in-process on a single node, it follows the DuckDB philosophy of doing the most work possible while utilizing multiple threads and as much memory as is available, so it's possible to get a lot more done than one might imagine on a single node. This is a very different approach from Neo4j's approach to scalability, which uses a "fabric" architecture, requiring far more complex infrastructure, not to mention that it's a lot more expensive to run.
 
-If you've read along this far, you may be wondering, how large of a graph can one analyze in Kùzu? Based on my conversations with the Kùzu team over the last several months, it's amply clear that Kùzu can scale to graphs that contain hundreds of millions of nodes and billions of edges. In fact, Kùzu is regularly tested on the [LDBC-100](https://ldbcouncil.org/benchmarks/snb/) graph benchmark, i.e., the 100 Gb variant of this dataset that contains ~280M nodes and 1.7B edges.
+If you've read along this far, you may be wondering, how large of a graph can one analyze in Kùzu? Based on my conversations with the Kùzu team over the last several months, it's amply clear that Kùzu can scale to graphs that contain hundreds of millions of nodes and billions of edges. In fact, Kùzu is regularly tested on the [LDBC SF100](https://ldbcouncil.org/benchmarks/snb/) graph benchmark, i.e., the 100 Gb variant of this dataset that contains ~280M nodes and 1.7B edges.
 
 Kùzu's ability to perform OLAP-querying on large graphs makes a lot of sense in production, especially for datasets containing many-to-many relationships and a large number of cliques/cycles. The added bonus is that it's a lot easier for graph data scientists and machine learning practitioners to connect their Kùzu graph to ML libraries like Pytorch Geometric (all it takes is `pip install kuzu`, without any added infrastructure).
 
-Thanks for reading this far, and consider going to Kuzu's [GitHub repo](https://github.com/kuzudb/kuzu), giving them a star ⭐️ and showing them some ❤️ on [Slack](#additional-resources).
+Thanks for reading this far, and consider going to Kuzu's [GitHub repo](https://github.com/kuzudb/kuzu) and giving them a star ⭐️!
 
 Other posts in this series:
 
@@ -472,7 +472,7 @@ All the code required to reproduce the results shown in this case study is avail
 
 ### Additional resources
 
-* Kùzu [Slack](https://join.slack.com/t/kuzudb/shared_invite/zt-1w0thj6s7-0bLaU8Sb~4fDMKJ~oejG_g): Discuss ideas, use cases and issues with the developers and the user community
+* Kùzu [Discord](https://kuzudb.com/chat): Discuss ideas, use cases and issues with the developers and the user community
 * Kùzu [Blog](https://kuzudb.com/docusaurus/blog/): Learn about the latest developments and the tool's internals at a deeper technical level
 
 ---
