@@ -57,6 +57,32 @@ a:focus-visible {
   }
 }
 
+
+/* Home page containers
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.home-container {
+    display: flex;
+    align-items: start;
+    /* Makes sure items start from the top */
+}
+
+.home-image {
+    flex: 1;
+    /* Takes up 1 portion of the flex container */
+    max-width: 200px;
+    /* Example width, adjust as needed */
+    margin-left: 20px;
+}
+
+.home-content {
+    flex: 2;
+    /* Takes up 2 portions of the flex container */
+    font-size: var(--paragraph-font-size);
+    hyphens: none;
+}
+
+
 /* prose
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 

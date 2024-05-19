@@ -87,7 +87,7 @@
       </div>
     </section>
     {% if config.extra.homepage_layout == 'about' %}
-      <section id="brief" class="prose">
+      <section id="brief" class="home-content">
         {{ section.content | trim | safe }}
       </section>
     {% elif config.extra.homepage_layout == 'list' %}
@@ -120,6 +120,7 @@
         {% endif %}
       </section>
     {% endif %}
+    {% include "_footer.html" %}
   </main>
 </div>
 {% endblock content %}
