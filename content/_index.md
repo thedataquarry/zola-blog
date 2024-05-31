@@ -24,7 +24,7 @@ knowledge-sharing. If you like what you're reading in the [blog](./posts), consi
   </div>
 
   <div class="home-image">
-    <img src="./prao.png" alt="Me, on a glorious spring day in Toronto 🇨🇦" width="200" />
+    <img src="./prao.png" alt="Me, on a glorious spring day in Toronto 🇨🇦" width="200" class="img-rounded" />
   </div>
 
 </div>

@@ -62,26 +62,28 @@ a:focus-visible {
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .home-container {
-    display: flex;
+    // display: flex;
     align-items: start;
     /* Makes sure items start from the top */
 }
 
 .home-image {
-    flex: 1;
-    /* Takes up 1 portion of the flex container */
     max-width: 200px;
     /* Example width, adjust as needed */
-    margin-left: 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .home-content {
-    flex: 2;
-    /* Takes up 2 portions of the flex container */
     font-size: var(--paragraph-font-size);
     hyphens: none;
 }
 
+.img-rounded {
+    border-radius: 50%;
+    /* Rounds the image */
+    width: 100%;
+}
 
 /* prose
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -520,6 +522,28 @@ body.prose-page {
         font-size: 1em;
         margin: 2.5px 5px;
         padding: 5px 10px;
+      }
+
+      .home-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+      }
+
+      .home-image {
+        margin-left: 0;
+        margin-bottom: 20px;
+        /* Add some space below the image */
+        max-width: 100%;
+        /* Allows the image to be fully responsive */
+      }
+
+      .home-image img {
+        max-width: 150px;
+        /* or any other appropriate size */
+        display: block;
+        margin: 0 auto;
+        /* Centers the image */
       }
     }
 
