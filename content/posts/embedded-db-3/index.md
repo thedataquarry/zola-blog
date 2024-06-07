@@ -39,7 +39,7 @@ With these ideas in mind, let's deconstruct LanceDB. On the *surface*, it is a v
 
 {{figure(src="lancedb-components.png" alt="The modular components of LanceDB" ) }}
 
-LanceDB implements its own vector indexes on top of the underlying [Lance](https://lancedb.github.io/lance/) data format, using either an IVF-PQ or an upcoming DiskANN index. Tantivy is an open source full-text search engine incorporated to allow keyword-based search via BM25. DataFusion, an embeddable SQL query engine, is used to power the full-text/vector search queries via a SQL interface. The Apache arrow format is used to allow a smooth transition between in-memory and on-disk data storage, and also for seamless interoperability with other data formats from systems like DuckDB, Pandas or Polars.
+LanceDB implements its own vector index on top of the underlying [Lance](https://lancedb.github.io/lance/) data format, which is an IVF-PQ disk-based index. Tantivy is an open source full-text search engine incorporated to allow keyword-based search via BM25. DataFusion, an embeddable SQL query engine, is used to power the full-text/vector search queries via a SQL interface. The Apache arrow format is used to allow a smooth transition between in-memory and on-disk data storage, and also for seamless interoperability with other data formats from systems like DuckDB, Pandas or Polars.
 
 ### Lance
 
@@ -355,7 +355,7 @@ Because `arrow-rs` is a key foundational project that develops rapidly on its ow
 As described in this post, LanceDB is an exciting addition to the vector database landscape because of its refreshingly different internals, and its interesting approach to composability. As of writing this post, there are already numerous developments ongoing in both open source (OSS) LanceDB, as well as its commercial product, LanceDB Cloud. Its adoption will no doubt increase over time as more and more developers discover the ease of use and its lightweight nature. Of all the features on its roadmap, I'm particularly looking forward to the following:
 
 * Async support for all its client APIs
-* Support for disk-based vector indexes (e.g., DiskANN)
+* Support for disk-based or hybrid vector indexes
 * Hybrid search features that combine the benefits of keyword-based and semantic search
 * Faster vectorization and data loading via async/multi-processing task pipelines
 * Support for upserts and easy updates/deletes for vectors whose representations change over time
