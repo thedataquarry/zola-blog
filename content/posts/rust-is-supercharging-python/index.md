@@ -88,7 +88,7 @@ The creators of SurrealDB, a NewSQL database, explain their reasoning in rewriti
 
 ### LanceDB: From C++ to Rust
 
-LanceDB, a serverless vector database, was originally written in C++, but as its co-founder, Chang She, explains, ["writing in Rust felt like such a breath of fresh air"](https://blog.lancedb.com/please-pardon-our-appearance-during-renovations-da8c8f49b383) -- the makers of this system decided to rewrite their entire code base in Rust. 🤯
+LanceDB, a serverless vector database, was originally written in C++, but as its co-founder, Chang She, explains, ["writing in Rust felt like such a breath of fresh air"](https://medium.com/etoai/please-pardon-our-appearance-during-renovations-da8c8f49b383) -- the makers of this system decided to rewrite their entire code base in Rust. 🤯
 
 * [Rewriting LanceDB in Rust](https://blog.lancedb.com/please-pardon-our-appearance-during-renovations-da8c8f49b383)
 
