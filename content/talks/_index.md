@@ -11,6 +11,12 @@ copy = false
 comment = false
 +++
 
+## Practical AI Podcast - Sep 2024
+
+[#288 GraphRAG (beyond the hype)](https://changelog.com/practicalai/288)
+
+> Seems like we are hearing a lot about GraphRAG these days, but there are lots of questions: what is it, is it hype, what is practical? One of our all time favorite podcast friends, Prashanth Rao, joins us to dig into this topic beyond the hype. Prashanth gives us a bit of background and practical use cases for GraphRAG and graph data.
+
 ## AICamp San Francisco - Jun 2024
 
 [The role of knowledge graphs in RAG](https://youtu.be/MlxZ87WmopI?si=0RC864qe4IkT0fHg&t=1892)
