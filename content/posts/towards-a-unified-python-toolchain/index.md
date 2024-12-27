@@ -1,5 +1,5 @@
 +++
-title = "uv: Toward a unified vision for Python tooling"
+title = "uv: Towards a unified vision for Python tooling"
 description = "An introduction to using uv to get the most out of Python project and dependency management, without worrying about virtual environments"
 date = 2024-12-26
 draft = false
