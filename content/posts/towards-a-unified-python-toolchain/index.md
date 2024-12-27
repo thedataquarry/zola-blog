@@ -335,8 +335,8 @@ In summary, here are some of the most useful commands that I more frequently use
 ### Tool usage
 
 Another very useful feature that I've begun using more in my workflows is the `uv tool run` command, whose shorthand is `uvx`. This command
-allows you to run the `ruff` formatter on your code via a similar workflow to `uv run`. The following command requires that `ruff` is also
-installed globally on your machine, similar to uv.
+allows you to run the `ruff` formatter on your code via a similar workflow to `uv run`. Again, uv does the necessary background work
+to download and install `ruff` on the fly, if it's not already installed on your machine[^4].
 
 ```bash
 uvx ruff check .
@@ -386,3 +386,6 @@ Feel free to clone the repo and compare uv's performance to other tools in your 
 [^2]: _Rye and uv: August is Harvest Season for Python Packaging_, Armin Ronacher's [blog](https://lucumr.pocoo.org/2024/8/21/harvest-season/)
 
 [^3]: _Why use `pip` over `easy_install`_?, [Stack Overflow](https://stackoverflow.com/questions/3220404/why-use-pip-over-easy-install) question from 2010.
+
+[^4]: Updated from the earlier version that incorrectly stated that you'd need ruff pre-installed. Thanks to
+Ryan Morey [on X](https://x.com/RyanMorey/status/1872725692384993639) for pointing this out!
