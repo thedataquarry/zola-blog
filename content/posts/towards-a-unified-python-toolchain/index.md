@@ -364,8 +364,8 @@ In my Python project workflows (both for experimentation and distribution of cle
 Depending on what background you're coming from, you may have other tools that you've used, that are also likely easily replaced by uv.
 
 I'm very passionate about communicating these benefits of unification in the Python tooling ecosystem, which in my opinion, brings Python on par
-with other languages like Rust, Ruby and Go -- languages that have long been lauded for their excellent tooling ecosystems. I also believe that sometimes,
-these ideas are best communicated via live demos, so I highly recommend watching the
+with other languages like Rust, Ruby and Go -- languages that have long been lauded for their excellent tooling. I also believe that sometimes,
+these ideas are best communicated via live demos, so I highly recommend watching
 the following video for a live coding tutorial that I did on this topic with [YourTechBud](https://www.youtube.com/@YourTechBudCodes).
 Feel free to add your thoughts in the video's comments section!
 
