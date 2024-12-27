@@ -17,16 +17,15 @@ comment = true
 
 As many readers of this blog will know, I've been coding in Python for what feels like forever, having written my first line of Python in 2009. Over the years, I've seen and used countless tools to manage dependencies, projects, virtual environments, packages and more, which are collectively known as the Python tooling ecosystem. It's clear that this ecosystem has always been fragmented, seemingly beyond hope. There are _so_ many tools that do similar things, many of which overlap in functionality, and it's not clear to even experienced users which one to use when collaborating with others on a project. Having worked with countless users who are just entering the Python ecosystem, I've seen first-hand how confusing this fragmented tool chain is for newcomers. Recall that Python has only grown in popularity over the years, and is now the most popular language [on GitHub](https://twitter.com/ashtom/status/1851345368984011220), so user-friendliness in the ecosystem is crucial for the language's long term success.
 
-The arrival of [Astral](https://astral.sh/), and their tools: [ruff](https://docs.astral.sh/ruff/) and more recently, uv, has proven to be a breath of fresh air to the entire Python community. Early in 2024, uv's release blog post[^1] created quite a buzz across the Python community, but as I reflect on my own usage of uv over the course of this past year, I felt the need to write this post as a tribute to uv's success, and to describe how it's markedly improved my productivity when working with Python.
+The arrival of [Astral](https://astral.sh/), and their tools: [ruff](https://docs.astral.sh/ruff/) and more recently, uv, has proven to be a breath of fresh air to the entire Python community. Early in 2024, uv's release blog post[^1] created quite a buzz across the ecosystem, but as I reflect on my own usage of uv over the course of this past year, I felt the need to write this post as a tribute to uv's success, and to describe how it's markedly improved my productivity when working with Python.
 
 A lot of you reading this post are probably like me -- i.e., you are a _user_ of Python libraries and frameworks written by other people. In this blog post, I'll summarize a bit of history of prior tools that did each did their individual jobs well, but uv is now changing the game by unifying the benefits of these tools into one.
 
 {% tip(header="TL;DR") %}
 As an AI Engineer, I typically use uv in two distinct "mindsets" during my development workflow.
 
-- **Experimentation**: In a project's early stages, I use uv in combination with `ipykernel` to iterate on ideas and experiments (make and break quickly) directly in my editor (no Jupyter Notebooks).
-- **Distribution**: Once the overall flow of the project is clearer, I use uv to execute code while seamlessly translating my initial working code to something that's production-ready
-or for sharing with others.
+- **Experimentation**: In a project's early stages (when I make and break quickly), I use uv in combination with `ipykernel` to iterate on ideas and experiments via interactive execution, directly in my editor (I generally avoid using Jupyter Notebooks).
+- **Distribution**: Once the overall flow of the project is clearer, I use uv to execute the workflow end-to-end via the command line, while seamlessly translating my initial working code to something that's production-ready or for sharing with others.
 
 If you want to see examples and a timing comparison, skip ahead to [this section](#usage) to see the commands I regularly use in my workflows.
 {% end %}
@@ -40,13 +39,13 @@ Armin Ronacher, creator of Flask and the `rye` package manager for Python, expla
 
 ### The early days: `easy_install`
 
-When I first began using Python in early 2009, the Python Package Index (PyPI) and `pip` weren't mature (`pip` had only just come out a few months before), and the only way to install packages was by either manually downloading the source and running `setup.py`, or use the `easy_install` utility. `easy_install` had some benefits, but came with a host of problems[^3]. It didn't have a way to _uninstall_ packages, and it didn't have a way to reproducibly and reliably install the right versions of libraries via a `requirements.txt` file. `pip` was created to solve these problems, and it did so admirably well.
+When I first began using Python in early 2009, the Python Package Index (PyPI) and `pip` weren't mature (`pip` had only just come out a few months before), and the only way to install packages was by either manually downloading the source and running `setup.py`, or use the `easy_install` utility. `easy_install` had some benefits, but came with a host of problems[^3]. It didn't have a way to _uninstall_ packages, and it also didn't have a way to reproducibly and reliably pin the right versions of dependencies like `pip` did via a `requirements.txt` file when it came out.
 
 `pip` was a huge step forward for the Python community, and it quickly became the de-facto package manager for Python. It was so good that it was eventually incorporated into the Python standard library, shipping with every default distribution of Python native to unix operating systems.
 
 ### The conda affliction
 
-The package manager `conda`, was developed to solve dependency resolution and library compilation challenges in the scientific Python ecosystem, which made sense when key libraries like `numpy` and `scipy` simply didn't compile on certain operating systems via `pip`. However, in hindsight, as `pip` became more and more mature, it's clear that `conda` further fragmented the Python user community, because it introduced a new package and environment manager totally distinct from `pip`. It also used an entirely different repository for new, up and coming libraries (`conda-forge`), so every library maintainer who released a new package on PyPI to be installable via `pip` had to also release the same package on `conda-forge` to be installable via `conda`. If you've worked on large Python codebases, especially those that involve scientific computing, you likely faced the issue of `conda` environments and `pip` environments not playing well together, forcing your to either migrate your entire codebase into one ecosystem or the other.
+The package manager `conda` was developed to solve dependency resolution and library compilation challenges in the scientific Python ecosystem, which made sense when key libraries like `numpy` and `scipy` simply didn't compile on certain operating systems via `pip`. However, in hindsight, as `pip` became more and more mature, it's clear that `conda` further fragmented the Python user community because it introduced a new package and environment manager totally distinct from `pip`. It also used an entirely different repository for new, up and coming libraries (`conda-forge`), so every library maintainer who released a new package on PyPI to be installable via `pip` had to also release the same package on `conda-forge` to be installable via `conda`. If you've worked on large Python codebases, especially those that involve scientific computing, you likely faced the issue of `conda` environments and `pip` environments not playing well together, forcing your to either migrate your entire codebase into one ecosystem or the other.
 
 I've always found it tragic that an entire generation of scientific Python developers came into the Python ecosystem circa 2010-2020 and only knew `conda` as their go-to Python dependency management tool. In all my time using Python over the last 15 years, I've found that "regular" software engineers or backend developers never wanted/used `conda`, preferring other alternatives, and so I've seen my fair share of teams that are a mix of scientific developers and software engineers who have to painstakingly stitch together their workflows because they simply cannot agree on a single toolchain.
 
@@ -56,7 +55,7 @@ I've always found it tragic that an entire generation of scientific Python devel
 
 `poetry` is a tool that a lot of developers (especially library maintainers) swear by, and for good reason -- it's a great tool for managing environments and dependencies via locked dependency files. While `pip` relied on the `requirements.txt` file to manage dependencies, `poetry` introduced a much more structured `pyproject.toml` (and its associated `poetry.lock` file), which results in deterministic builds across different platforms and far fewer cases of failure in resolving dependencies.
 
-However, there's no denying that `poetry` is _noticeably slow_. In most machine learning or scientific computing projects where you're dealing with a ton of dependencies, `poetry`'s dependency resolver can take a long time to resolve the dependency graph and get a project set up. The justification has always been that it at least "works", and reduces the burden of portability on library developers who are distributing packages to a large number of users across a variety of platforms. I've seen a lot of mature projects in the Python ecosystem adopt `poetry` for these reasons, and it's more or less become the de-facto standard package manager for Python projects involving larger teams where collaboration is of essence.
+However, there's no denying that `poetry` is _noticeably slow_. In most machine learning or scientific computing projects where you're dealing with a ton of dependencies, `poetry`'s dependency resolver can take a long time to resolve the dependency graph and get a project set up. The justification has always been that it at least "works", and reduces the burden of portability on library developers who are distributing packages to a large number of users across a variety of platforms. I've seen a lot of mature projects in the Python ecosystem adopt `poetry` for these reasons, and it's more or less become the de-facto standard package manager for projects involving larger teams or huge open source projects where collaboration is of essence.
 
 ### A host of other tools
 
@@ -92,8 +91,7 @@ Let's first start by asking ourselves what the requirements are for a good Pytho
 - **Project packaging**: How do you package your project for distribution? How do you ensure that the package is built correctly and that it can be installed on another machine?
 - **Ease of use**: How do you ensure that the tools and workflow you applied to your project is easy enough for you, yourself, and then to train others who are new to the project?
 
-As you go read this post and through the uv [docs](https://docs.astral.sh/uv/), you'll see that it addresses all of these requirements (and more), while being a one-stop-shop where
-you may have earlier resorted to multiple other tools.
+As you read this post and go through the uv [docs](https://docs.astral.sh/uv/), you'll see that it addresses all of these requirements (and more), while being a one-stop-shop when you may have earlier resorted to using multiple other tools.
 
 ### Create project
 
@@ -216,11 +214,9 @@ time uv add -r requirements.txt
 Installing the dependencies via uv took just 2.3 seconds! Upon completion of this command,
 we now have a `.venv` directory in our project directory, which contains the virtual environment for this project.
 We do not need to worry about its contents, or about activating it, as we will see below. uv manages this
-directory and its usage entirely for us.
+directory and its usage entirely for us. Indeed, you may as well not even be aware that the `.venv` directory exists.
 
 The ease of use is already evident here -- we simply run `uv add -r requirements.txt` and uv handles the rest.
-There's also no need to keep track of activating the virtual environment. Indeed, you may as well not even
-know that the `.venv` directory it created exists.
 
 To summarize, here's a timing table for this simple dependency resolution task, done
 via a cold cache using each of the three tools:
@@ -233,7 +229,7 @@ Tool | Timing
 
 uv was **8x faster** than `pip` and **3x faster** than `poetry` in this relatively simple dependency resolution task.
 In a realistic scenario, you're likely dealing with a lot more dependencies that are more complex, and the performance
-gap between uv and the other tools is even more pronounced.
+gap between uv and the other tools would be even more pronounced.
 
 ### Interactive code execution
 
@@ -264,11 +260,17 @@ See below for a demo of how simple it is to use a local uv-managed virtual envir
 The above approach is in stark contrast to Jupyter Lab or Jupyter notebooks, which typically require you to install a
 custom `ipython` kernel that's stored and managed separately from the project's virtual environment that may
 have been created via `pip` or `poetry`. This leads to a disconnect between the environment on your machine and the
-environment that someone else may use on their machine, because it required them to perform a bunch of extra steps
-to ensure that the kernel is installed and linked to the correct virtual environment. uv solves this problem
-by allowing you to use the **same** tool and virtual environment for both interactive code execution _and_ command line execution.
+environment that someone else may use on their machine, because it requires them to perform a bunch of extra steps
+to ensure that the kernel is correctly installed and linked to the correct virtual environment on their end,
+which you as the developer who distributed the code have no control over.
+
+uv solves the above problem by allowing you to use the **same** tool and virtual environment for
+both interactive code execution _and_ command line execution, and clearly packaging it all in a self-contained way
+that can be easily distributed to others.
 
 ### Command line execution
+
+Let's look at how uv handles command line execution of Python code.
 
 The `.venv` directory in which uv manages the virtual environment is created when you run `uv add` or `uv sync` (which looks for a local `pyproject.toml` file and creates
 a `.venv` directory that holds the virtual environment, if it doesn't already exist). If you're using uv in a CI/CD pipeline, you
@@ -361,9 +363,9 @@ In my Python project workflows (both for experimentation and distribution of cle
 
 Depending on what background you're coming from, you may have other tools that you've used, that are also likely easily replaced by uv.
 
-I've become very passionate about communicating these benefits of unification in the Python tooling ecosystem, which in my opinion, brings Python on par
-with other languages like Rust, Ruby and Go, which have long been lauded for their excellent tooling ecosystems. I also believe that sometimes,
-these thoughts are best communicated via live demos, so in light of that, I highly recommend watching the
+I'm very passionate about communicating these benefits of unification in the Python tooling ecosystem, which in my opinion, brings Python on par
+with other languages like Rust, Ruby and Go -- languages that have long been lauded for their excellent tooling ecosystems. I also believe that sometimes,
+these ideas are best communicated via live demos, so I highly recommend watching the
 the following video for a live coding tutorial that I did on this topic with [YourTechBud](https://www.youtube.com/@YourTechBudCodes).
 Feel free to add your thoughts in the video's comments section!
 
