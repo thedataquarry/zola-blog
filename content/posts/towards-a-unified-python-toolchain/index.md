@@ -380,5 +380,7 @@ Feel free to clone the repo and compare uv's performance to other tools in your 
 ---
 
 [^1]: _uv: Unifying Python Packaging_, Astral's [blog](https://astral.sh/blog/uv-unified-python-packaging) post.
+
 [^2]: _Rye and uv: August is Harvest Season for Python Packaging_, Armin Ronacher's [blog](https://lucumr.pocoo.org/2024/8/21/harvest-season/)
+
 [^3]: _Why use `pip` over `easy_install`_?, [Stack Overflow](https://stackoverflow.com/questions/3220404/why-use-pip-over-easy-install) question from 2010.
