@@ -365,8 +365,8 @@ I highly recommend giving out LanceDB a try on your own data, and to keep an eye
 
 Other posts in this series:
 
-- [Embedded databases (1): The harmony of DuckDB, KùzuDB and LanceDB](../embedded-db-1)
-- [Embedded databases (2): KùzuDB, an extremely fast OLAP graph database](../embedded-db-2)
+- [Embedded databases (1): The harmony of DuckDB, Kùzu and LanceDB](../embedded-db-1)
+- [Embedded databases (2): Kùzu, an extremely fast, embedded graph database](../embedded-db-2)
 
 ## Code
 

@@ -1,6 +1,6 @@
 +++
-title = "Embedded databases (2): KùzuDB, an extremely fast OLAP graph database"
-description = "A benchmark study comparing the performance of KùzuDB vs. Neo4j on an artificial social network dataset"
+title = "Embedded databases (2): Kùzu, an extremely fast embedded graph database"
+description = "A benchmark study comparing the performance of Kùzu vs. Neo4j on an artificial social network dataset"
 date = 2023-09-09
 draft = false
 
@@ -14,11 +14,11 @@ comment = true
 math = true
 +++
 
-## Benchmarking KùzuDB vs. Neo4j on a social network dataset
+## Benchmarking Kùzu vs. Neo4j on a social network dataset
 
 Embedded databases have been experiencing something of a renaissance lately. In the [first post](../embedded-db-1/) in this series, I gave a detailed overview of this fascinating landscape, breaking it down into domains. This second post goes deeper into the graph domain -- in particular, [Kùzu](https://github.com/kuzudb/kuzu), a modern, lightweight, blazing fast embedded graph database written in C++ that's emerging as a powerful option for analytically querying very large graphs.
 
-Because it's hard to gauge performance in isolation, this study compares Kùzu's performance to [Neo4j](https://github.com/neo4j/neo4j), the most well-known graph database in the market. The study involves querying an artificial social network dataset that's hand-constructed to possess interesting graph structures, while also being large enough to measure performance in a meaningful manner.
+Because it's hard to gauge performance in isolation, this study compares Kùzu's performance to the community edition of [Neo4j](https://github.com/neo4j/neo4j), a well-known and mature graph database already in widespread use. The study involves querying an artificial social network dataset that's hand-constructed to possess interesting graph structures, while also being large enough to measure performance in a meaningful manner.
 
 {% warning(header="Note") %}
 The aim of this post is **NOT** to state that one database is better or worse than the other. Please take this as a *purely informative exercise*, and come to your own conclusions by testing out such a workflow on your own data.
@@ -26,7 +26,7 @@ The aim of this post is **NOT** to state that one database is better or worse th
 
 ### What makes Kùzu different?
 
-Having been a graph data scientist and practitioner for a few years now, I can say I've experimented with my fair share of options. The standout feature of Kùzu that sets it apart from all the others is, of course, its embedded architecture -- Kùzu is natively designed to run in-process, tightly integrated with the application code written in your language of choice. In their blog post outlining their vision[^1], the makers of Kùzu very explicitly state their goal of replicating in the graph world what DuckDB has done for relational DBs.
+Having been a graph data scientist and practitioner for several years, I can say I've experimented with my fair share of options. The standout feature of Kùzu that sets it apart from all the others is its embedded architecture -- Kùzu is natively designed to run in-process, tightly integrated with the application code written in your language of choice. In a blog post outlining Kùzu's vision[^1], its makers very explicitly state their goal of replicating in the graph world what DuckDB has done for relational DBs.
 
 In my opinion, there are a few other design decisions of Kùzu that make it particularly interesting and useful for a wide variety of practitioners.
 
@@ -463,7 +463,7 @@ Thanks for reading this far, and consider going to Kuzu's [GitHub repo](https://
 
 Other posts in this series:
 
-- [Embedded databases (1): The harmony of DuckDB, KùzuDB and LanceDB](../embedded-db-1)
+- [Embedded databases (1): The harmony of DuckDB, Kùzu and LanceDB](../embedded-db-1)
 - [Embedded databases (3): LanceDB and the modular data stack](../embedded-db-3)
 
 ## Code

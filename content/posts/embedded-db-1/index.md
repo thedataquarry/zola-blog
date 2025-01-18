@@ -1,5 +1,5 @@
 +++
-title = "Embedded databases (1): The harmony of DuckDB, KùzuDB and LanceDB"
+title = "Embedded databases (1): The harmony of DuckDB, Kùzu and LanceDB"
 description = "A look at how embedded databases enable easy navigation between relational, graph and vector paradigms"
 date = 2023-08-27
 draft = false
@@ -23,7 +23,7 @@ Although the idea of embedded databases is not new -- SQLite has been around sin
 
 However, a lot of these enterprise solutions are designed for "big" data (whatever that means for your organization). But there's a whole ocean of use cases *in between* single-CPU, in-memory analytics and large-scale, distributed analytics. It's in this middle ground where embedded databases shine ✨, because they're designed to be lightweight, easy to use, and are extremely performant for analytics, from small-scale (a few million) to large-scale (billion-size) datasets.
 
-The aim of this series is to first gain a birds-eye view of the embedded database landscape, and how their interplay with Apache Arrow ecosystem is allowing for greater flexibility in data modelling than was possible before. From an OLAP perspective, three particular vendors are really exciting: **DuckDB** in the relational world, **KùzuDB** for graphs, and **LanceDB** for vectors.
+The aim of this series is to first gain a birds-eye view of the embedded database landscape, and how their interplay with Apache Arrow ecosystem is allowing for greater flexibility in data modelling than was possible before. From an OLAP perspective, three particular vendors are really exciting: **DuckDB** in the relational world, **Kùzu** for graphs, and **LanceDB** for vectors.
 
 ## Some background
 
@@ -93,15 +93,15 @@ Because DuckDB **natively** supports a lot of these formats, it's able to perfor
 
 {{ figure(src="embedded-db-duckdb.png" alt="A productive DuckDB setup for large (100M+ size) analytical workloads" ) }}
 
-## KùzuDB
+## Kùzu
 
-[KùzuDB](https://github.com/kuzudb/kuzu) is an open-source graph database management system (GDBMS) built for query speed and scalability, and is implemented in C++. Its origins and motivations are quite similar to DuckDB on two counts, in that it utilizes an embedded architecture, and that it came from an academic environment. KùzuDB comes from years of research at University of Waterloo 🇨🇦, and applies several modern techniques for storage and query processing of graph-like data. It implements the Cypher query language, based on the [openCypher](https://opencypher.org/) standard, allowing developers to unlock the full expressive power of graphs via a property graph data model (or [RDF](https://docs.kuzudb.com/rdf-graphs/), if required).
+[Kùzu](https://github.com/kuzudb/kuzu) is an open-source graph database management system (GDBMS) built for query speed and scalability, and is implemented in C++. Its origins and motivations are quite similar to DuckDB on two counts, in that it utilizes an embedded architecture, and that it came from an academic environment. Kùzu comes from years of research at University of Waterloo 🇨🇦, and applies several modern techniques for storage and query processing of graph-like data. It implements the Cypher query language, based on the [openCypher](https://opencypher.org/) standard, allowing developers to unlock the full expressive power of graphs via a property graph data model (or [RDF](https://docs.kuzudb.com/rdf-graphs/), if required).
 
 A graph database, at its deepest core, despite its name, expresses a relational model. The main difference in the internals of a GDBMS and a typical relational system is that the GDBMS is optimized for storing and querying specialized data structures and join algorithms that are suited to modelling datasets with a high degree of connectivity, such social networks, recommendation engines, fraud detection, and many others.
 
-### Key features of KùzuDB
+### Key features of Kùzu
 
-KùzuDB, being an embedded database, incorporates cutting-edge features straight out of the world of academic database research. A few of their key features for blazing fast graph query performance are listed below, as adapted from their excellent blog post, titled "*What every competent GDBMS should do"*[^7].
+Kùzu, being an embedded database, incorporates cutting-edge features straight out of the world of academic database research. A few of their key features for blazing fast graph query performance are listed below, as adapted from their excellent blog post, titled "*What every competent GDBMS should do"*[^7].
 
 * **Vectorized query processing**: A graph database exploits the underlying relational structure of the data and stores it via an efficient columnar format in blocks, so that queries and aggregations can be processed in a vectorized fashion, fully exploiting the power of multiple threads on modern CPUs.
 
@@ -115,7 +115,7 @@ KùzuDB, being an embedded database, incorporates cutting-edge features straight
 
 * **Semi-structured data handling**: In many cases, we may have data that contains deeply nested JSON, involving cases where one entity can have many types (a node representing Justin Trudeau can be both of type `Person`, and of type `Politician`, depending on the logic being expressed in the data model). A labelled property graph data model allows assigning multiple labels to these entities, providing added flexibility to the developer while designing the schema for the kinds of queries expected in the application.
 
-### Goals of KùzuDB
+### Goals of Kùzu
 
 The goals and vision of Kùzu are very well articulated in their blog post[^7], but the main summary is that it's designed to be a fast, scalable and easy-to-use solution for graph data science, graph machine learning (via frameworks like PyTorch Geometric) and analytics on very large graphs (upwards of 100M nodes and 1B edges). It's very well-integrated with the Python data science ecosystem, with client libraries in C++, Rust, Node.js, Java and of course, Python.
 
@@ -162,14 +162,14 @@ In early 2023, DuckDB made a significant announcement related to its monetizatio
 * A notebook-like SQL IDE (similar to DataBricks Spark notebooks) to make data scientists and analysts more productive
 * Sharing databases with teammates
 
-### KùzuDB
+### Kùzu
 
 Kùzu is the furthest ahead among graph DB vendors in the quest to provide an easy-to-use and scalable embeddable graph DBMS.
 
 * [Kùzu](https://kuzudb.com/) is a powerful, open-source, ACID-compliant graph database **ready for production**, with great support for the openCypher query language
   * My [experiments](../embedded-db-2) with it show it to be blazing fast in comparison to existing solutions, and it's able to handle large-scale graph queries using a familiar query language.
 * As they mention in their blog[^7], Kùzu is aiming to emulate in the graph database world what DuckDB has done in the SQL world, and gain widespread adoption through a sound core that's open-source and scalable
-* As the use cases for graph data structures & algorithms proliferate into ML/AI and LLM applications, my take is that an as-yet unannounced commercial offering from KùzuDB could be hugely valuable in building analytics tools powered by graphs
+* As the use cases for graph data structures & algorithms proliferate into ML/AI and LLM applications, my take is that an as-yet unannounced commercial offering from Kùzu could be hugely valuable in building analytics tools powered by graphs
 
 ### LanceDB + LanceDB Cloud
 
@@ -191,7 +191,7 @@ Onward and upward! 🚀
 
 Other posts in this series:
 
-- [Embedded databases (2): KùzuDB, an extremely fast OLAP graph database](../embedded-db-2)
+- [Embedded databases (2): Kùzu, an extremely fast OLAP graph database](../embedded-db-2)
 - [Embedded databases (3): LanceDB and the modular data stack](../embedded-db-3)
 
 ---
@@ -206,7 +206,7 @@ Other posts in this series:
 
 [^5]: Why we built Rill with DuckDB, [Rill blog](https://www.rilldata.com/blog/why-we-built-rill-with-duckdb)
 
-[^7]: What every competent graph database management system should do, [KùzuDB blog](https://blog.kuzudb.com/post/what-every-gdbms-should-do-and-vision/)
+[^7]: What every competent graph database management system should do, [Kùzu blog](https://blog.kuzudb.com/post/what-every-gdbms-should-do-and-vision/)
 
 [^9]: Benchmarking random access in Lance, [LanceDB blog](https://blog.lancedb.com/benchmarking-random-access-in-lance/)
 
