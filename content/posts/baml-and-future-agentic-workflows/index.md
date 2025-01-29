@@ -50,7 +50,7 @@ Downstream, the BAML parser obtains the LLM's output and applies _post facto_ fi
 
 {{ figure(src="baml-5.png" alt="BAML's upstream and downstream prompting and parsing workflow") }}
 
-The BAML parser uses a technique called [Schema-Aware Parsing](https://www.boundaryml.com/blog/schema-aligned-parsing#sap) (SAP) to fix the LLM's output via a rule-based engine, applying error correction techniques to get the output to conform to the known schema. Because the parser is written in Rust 🦀, it's able to apply the fixes in <10 ms, which is orders of magnitude faster (and cheaper) than re-prompting the LLM to fix its mistakes. It's an _engineering solution_ to a problem that shouldn't require the sophistication of a full-fledged LLM. Even if LLMs improve remarkably over the coming years, which they likely will, token generation per a strict format would still be more expensive than a rule-based parser, which is **free**.
+The BAML parser uses a technique called [Schema-Aligned Parsing](https://www.boundaryml.com/blog/schema-aligned-parsing#sap) (SAP) to fix the LLM's output via a rule-based engine, applying error correction techniques to get the output to conform to the known schema. Because the parser is written in Rust 🦀, it's able to apply the fixes in <10 ms, which is orders of magnitude faster (and cheaper) than re-prompting the LLM to fix its mistakes. It's an _engineering solution_ to a problem that shouldn't require the sophistication of a full-fledged LLM. Even if LLMs improve remarkably over the coming years, which they likely will, token generation per a strict format would still be more expensive than a rule-based parser, which is **free**.
 
 ## Strengths of BAML
 
