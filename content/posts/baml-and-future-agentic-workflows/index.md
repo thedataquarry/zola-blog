@@ -102,7 +102,7 @@ test my_resume {
 
       Experience:
       - AI Engineer at Kùzu Inc. (2024 Jan - Present)
-      - AI and Data Engineer at RBC (2022 May - 2024 Dec)
+      - AI and Data Engineer at RBC (2022 May - 2023 Dec)
 
       Skills:
       - Python
@@ -123,13 +123,13 @@ in the prompt. All of this was done before a line of application code was writte
       "role": "AI Engineer",
       "company": "Kùzu Inc.",
       "start_date": "2024-01",
-      "end_date": "Current"
+      "end_date": "Unknown"
     },
     {
       "role": "AI and Data Engineer",
       "company": "RBC",
       "start_date": "2022-05",
-      "end_date": "2024-12"
+      "end_date": "2023-12"
     }
   ],
   "skills": [
@@ -225,6 +225,9 @@ The Data Exchange Podcast by Ben Lorica with Vaibhav Gupta, the founder of Bound
 ---
 
 [^1]: [LangChain's second birthday](https://blog.langchain.dev/langchain-second-birthday/), LangChain blog
+
 [^2]: [Python data validator Pydantic launches model-agnostic AI agent development platform](https://venturebeat.com/programming-development/python-data-validator-pydantic-launches-model-agnostic-ai-agent-development-platform/), Venture Beat
+
 [^3]: [Outlines](https://dottxt-ai.github.io/outlines/latest/welcome/), a Python library that allows you to use LLMs with structured generation
+
 [^4]: [Beating OpenAI's structured outputs on cost, accuracy and speed](https://www.boundaryml.com/blog/sota-function-calling)
