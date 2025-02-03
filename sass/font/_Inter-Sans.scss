@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'Inter_18pt';
+    src: local("Inter_18pt"), url("font/IBMPlexSans-Regular.woff2");//latin regular
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Inter_18pt';
+    src: local("Inter_18pt-Italic"), url("font/IBMPlexSans-Italic.woff2");//latin italic
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Inter_18pt';
+    src: local("Inter_18pt-Bold"), url("font/IBMPlexSans-Bold.woff2");//latin bold
+    font-weight: bold;
+    font-display: swap;
+}
