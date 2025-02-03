@@ -1,0 +1,31 @@
+[[project]]
+name = "Pydantic benchmarks"
+desc = "Benchmarks for newer versions of Pydantic v2, written in Rust 🦀"
+tags = ["pydantic"]
+links = [
+    {name = "github", url = "https://github.com/prrao87/pydantic-benchmarks"},
+]
+
+[[project]]
+name = "DBHub FastAPI"
+desc = "Boilerplate to quickly set up a FastAPI layer on top of numerous NoSQL, graph and vector databases"
+tags = ["graph-db", "vector-db", "api"]
+links = [
+    {name = "github", url = "https://github.com/prrao87/db-hub-fastapi"},
+]
+
+[[project]]
+name = "KúzuDB study"
+desc = "Benchmark study on KùzuDB, an embedded OLAP graph database, on an artificial social network dataset"
+tags = ["graph-db"]
+links = [
+    {name = "github", url = "https://github.com/prrao87/kuzudb-study"},
+]
+
+[[project]]
+name = "LanceDB study"
+desc = "Benchmark study on LanceDB, an embedded vector DB, for full-text search and vector search"
+tags = ["vector-db"]
+links = [
+    {name = "github", url = "https://github.com/prrao87/lancedb-study"},
+]
